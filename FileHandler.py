@@ -1,5 +1,13 @@
 import os, re, sys
+<<<<<<< Visualization
+from Bio import SeqIO, Seq, SeqRecord
+from Bio.Seq import Seq
+from Bio.SeqRecord import SeqRecord
+from Bio.Alphabet import IUPAC
+
+=======
 from Bio import SeqIO
+>>>>>>> main
 
 class IntronFileHandler():
 
@@ -78,6 +86,48 @@ class MSAfileHandler():
     def getClustaloExecPath(self):
         return os.path.join('execs', "clustalo-1.2.0")
 
+<<<<<<< Visualization
+    def msa_FileCorrection(self):
+
+        # the purpose of this function is to convert the MSA protein file into one that can include the description
+
+
+        path = os.path.join('execs', 'tmp', 'aligned.tmp')
+        msa_input_file = SeqIO.parse(path, 'fasta')
+
+        genus_species_pattern = re.compile('\[\w+ \w+\]')
+        accession_pattern = re.compile('[XNP_]+\d*.\d')
+
+        sequence_list = []
+
+        for item in msa_input_file:
+            accession_number = item.description.replace(' ', '_').replace(':', '_').replace('[', '_').replace(']',
+                                                                                                              '_').replace(
+                'LOW_QUALITY_PROTEIN', '_')
+
+            # accession_search = re.search(accession_pattern, str(item))
+            # accession_number = accession_search.group()
+            #
+            # genus_species_search = re.search(genus_species_pattern, str(item))
+            # genus_species = genus_species_search.group()
+            #
+            # new_msa_input = str('>' + accession_number + '_' + genus_species + '\n' + item.seq + '\n')
+            new_msa_input = str('>' + accession_number + '\n' + item.seq + '\n')
+            sequence_list.append(new_msa_input)
+            # print new_msa_input
+            # sequence_list.append(new_msa_input)
+
+        with open(path, 'w') as clear_file:
+            clear_file.write('')
+            clear_file.close()
+        for item in sequence_list:
+            print item
+            with open(path, 'a') as msa_file_rewrite:
+                msa_file_rewrite.write(item)
+                msa_file_rewrite.close()
+
+=======
+>>>>>>> main
 class treeOBjFileHandler():
 
     def __init__(self):
@@ -92,6 +142,29 @@ class treeOBjFileHandler():
     def getRootedTreePath(self):
         return os.path.join('execs','tmp', "rooted_tree.nwk")
 
+<<<<<<< Visualization
+    def getProteinAccession(self, descriptionRecords):
+        # This method will use regular expression take the input of a list of protein descriptions and remove the accession number
+        '''
+        :input: list of protein descriptions ie. [NP_005338.1_HSPA5_Homo_sapians, etc.]
+        :return:list of protein accessions ie. [NP_005338.1, etc. ]
+        '''
+        accession_pattern = re.compile('[XN][P][_ ]\d+.\d')
+
+        recordList = descriptionRecords
+
+        accessionList = []
+
+        for record in recordList:
+            accession_expression = re.search(accession_pattern, '%s' % (record))
+            accession_expression_out = accession_expression.group()
+
+            accessionList.append(accession_expression_out.replace(' ', '_'))
+
+        return accessionList
+
+=======
+>>>>>>> main
 class GCfileHandler():
 
     def __init__(self):
