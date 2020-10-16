@@ -1,13 +1,9 @@
 import os, re, sys
-<<<<<<< Visualization
+
 from Bio import SeqIO, Seq, SeqRecord
 from Bio.Seq import Seq
 from Bio.SeqRecord import SeqRecord
 from Bio.Alphabet import IUPAC
-
-=======
-from Bio import SeqIO
->>>>>>> main
 
 class IntronFileHandler():
 
@@ -85,8 +81,7 @@ class MSAfileHandler():
 
     def getClustaloExecPath(self):
         return os.path.join('execs', "clustalo-1.2.0")
-
-<<<<<<< Visualization
+      
     def msa_FileCorrection(self):
 
         # the purpose of this function is to convert the MSA protein file into one that can include the description
@@ -126,8 +121,7 @@ class MSAfileHandler():
                 msa_file_rewrite.write(item)
                 msa_file_rewrite.close()
 
-=======
->>>>>>> main
+
 class treeOBjFileHandler():
 
     def __init__(self):
@@ -142,7 +136,7 @@ class treeOBjFileHandler():
     def getRootedTreePath(self):
         return os.path.join('execs','tmp', "rooted_tree.nwk")
 
-<<<<<<< Visualization
+
     def getProteinAccession(self, descriptionRecords):
         # This method will use regular expression take the input of a list of protein descriptions and remove the accession number
         '''
@@ -163,8 +157,7 @@ class treeOBjFileHandler():
 
         return accessionList
 
-=======
->>>>>>> main
+
 class GCfileHandler():
 
     def __init__(self):
