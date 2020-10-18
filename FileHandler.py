@@ -109,14 +109,11 @@ class MSAfileHandler():
             # new_msa_input = str('>' + accession_number + '_' + genus_species + '\n' + item.seq + '\n')
             new_msa_input = str('>' + accession_number + '\n' + item.seq + '\n')
             sequence_list.append(new_msa_input)
-            # print new_msa_input
-            # sequence_list.append(new_msa_input)
 
         with open(path, 'w') as clear_file:
             clear_file.write('')
             clear_file.close()
         for item in sequence_list:
-            print item
             with open(path, 'a') as msa_file_rewrite:
                 msa_file_rewrite.write(item)
                 msa_file_rewrite.close()

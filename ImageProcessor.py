@@ -54,7 +54,8 @@ class PhyloTreeConstruction(object):
         except AttributeError:
             pass
 
-        print('\n' + 'ROOTED TREE HAS BEEN CONSTRUCTED...'
+        print('\n' + 'ROOTED TREE HAS BEEN CONSTRUCTED...')
+
 
     def collectMultipleSequencingAlignment(self):
 
