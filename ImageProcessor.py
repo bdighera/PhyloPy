@@ -56,6 +56,7 @@ class PhyloTreeConstruction(object):
 
         print('\n' + 'ROOTED TREE HAS BEEN CONSTRUCTED...')
 
+
     def collectMultipleSequencingAlignment(self):
 
         MSA = MSAfileHandler()
@@ -363,7 +364,6 @@ class PhyloTreeConstruction(object):
 
 
                 else:
-                    print('here')
                     recordMotifs.append(dummyIntronMotif)
 
             GCMotifs.append(recordMotifs)
