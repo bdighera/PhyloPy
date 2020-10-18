@@ -54,7 +54,7 @@ class PhyloTreeConstruction(object):
         except AttributeError:
             pass
 
-        print '\n' + 'ROOTED TREE HAS BEEN CONSTRUCTED...'
+        print('\n' + 'ROOTED TREE HAS BEEN CONSTRUCTED...')
 
     def collectMultipleSequencingAlignment(self):
 
@@ -75,7 +75,7 @@ class PhyloTreeConstruction(object):
                 msaprotein_writeFile.write(protein)
 
 
-        print '\n' + 'CREATING MULTIPLE SEQUENCING ALIGNMENT...'
+        print('\n' + 'CREATING MULTIPLE SEQUENCING ALIGNMENT...')
 
         clustalomega_cline = ClustalOmegaCommandline(cmd=os.path.join('execs', "clustalo-1.2.0"),
                                                      infile=in_file,
@@ -83,7 +83,7 @@ class PhyloTreeConstruction(object):
         clustalomega_cline()
         MSA.msa_FileCorrection()
 
-        print '\n' + 'MULTIPLE SEQUENCING ALIGNMENT HAS BEEN CREATED...'
+        print('\n' + 'MULTIPLE SEQUENCING ALIGNMENT HAS BEEN CREATED...')
 
     def constructTreeObj(self):
 
