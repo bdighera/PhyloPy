@@ -15,7 +15,7 @@ A data driven protein ortholog finding tool utilizing phylogenetic trees, intron
       
   3. Create the virtual environment in the cloned directory (see Cloning the Github Repo). Make sure evironment.yml file is in dir.
   
-      `conda env create -f environment.yml python=2.7`
+      `conda PhyloPy create -f environment.yml python=2.7`
       
   4. Install the python dependencies
   
