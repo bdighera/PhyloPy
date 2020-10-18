@@ -17,6 +17,14 @@ A data driven protein ortholog finding tool utilizing phylogenetic trees, intron
   
       `conda PhyloPy create -f environment.yml python=2.7`
       
+     OR
+      
+     Add to existing conda virtual environment (after activating conda environment)
+     
+      `conda env update --file environment.yml`
+     
+      `
+      
   4. Install the python dependencies
   
       `pip install -r requirements.txt`
