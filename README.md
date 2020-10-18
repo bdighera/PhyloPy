@@ -20,6 +20,10 @@ A data driven protein ortholog finding tool utilizing phylogenetic trees, intron
   4. Install the python dependencies
   
       `pip install -r requirements.txt`
+      
+  5. Activating the conda environement.
+  
+      `conda activate PhyloPy`
 
 # Downloading Executible Dependencies
 
