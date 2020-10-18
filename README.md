@@ -137,4 +137,4 @@ $ git clone https://github.com/YOUR-USERNAME/YOUR-REPOSITORY
   
    Open terminal:
    
-    `conda install -c etetoolkit ete3`
+    conda install -c etetoolkit ete3
