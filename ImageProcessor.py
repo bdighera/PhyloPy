@@ -149,9 +149,9 @@ class PhyloTreeConstruction(object):
             domains = accessionDomains[leaf]
             domainLen = len(accessionDomains[leaf])
 
-            domainName = [domains.keys()[i] for i in range(domainLen)]
-            domainStart = [domains.values()[i].split(':')[0] for i in range(domainLen)]
-            domainEnd = [domains.values()[i].split(':')[1] for i in range(domainLen)]
+            domainName = [list(domains.keys())[i] for i in range(domainLen)]
+            domainStart = [list(domains.values())[i].split(':')[0] for i in range(domainLen)]
+            domainEnd = [list(domains.values())[i].split(':')[1] for i in range(domainLen)]
 
             domainColor = [domainColors[domain] for domain in domains]
 
