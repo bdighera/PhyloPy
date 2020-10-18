@@ -24,6 +24,27 @@ A data driven protein ortholog finding tool utilizing phylogenetic trees, intron
   5. Activating the conda environement.
   
       `conda activate PhyloPy`
+      
+# Making the project Mac/Windows Compatible
+
+### Making the project compatible with other os systems requires installing your own version of the standalone binary files.
+  
+  1. FastTree can be acquired [here](http://www.microbesonline.org/fasttree/)
+     Download the .cpp file and run the following command in terminal to compile. If command is not recognized install gcc
+     
+     `gcc -O3 -finline-functions -funroll-loops -Wall -o FastTree FastTree.c -lm`
+    
+     Replace the current FastTree in the ./execs/ folder
+
+  2. Clustalo can be acquired [here](http://www.clustal.org/omega/)
+     Run the following command in the working directory
+
+     `mv install-sh clustalo-1.2.0`
+     
+     replace this file in the ./execs/ folder
+
+     Note: These alterations will only allow mac execution of PhyloPy visualization
+
 
 # Downloading Executible Dependencies
 
