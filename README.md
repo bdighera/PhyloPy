@@ -135,6 +135,6 @@ $ git clone https://github.com/YOUR-USERNAME/YOUR-REPOSITORY
 
   1. Import Error: Cannot import package "SeqMotifFace"
   
-   Open terminal:
+   Open terminal (from within the project conda venv):
    
     conda install -c etetoolkit ete3
