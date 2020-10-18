@@ -1,0 +1,48 @@
+name: /Users/Bryan/Desktop/CondaEnv
+channels:
+  - defaults
+dependencies:
+  - biopython=1.72=py35h6440ff4_0
+  - blas=1.0=mkl
+  - ca-certificates=2020.10.14=0
+  - certifi=2018.8.24=py35_1
+  - dbus=1.13.16=h18a8e69_0
+  - expat=2.2.10=hb1e8313_2
+  - gettext=0.19.8.1=h15daf44_3
+  - glib=2.63.1=hd977a24_0
+  - icu=58.2=h0a44026_3
+  - intel-openmp=2019.4=233
+  - jpeg=9b=he5867d9_2
+  - libcxx=10.0.0=1
+  - libedit=3.1.20191231=h1de35cc_1
+  - libffi=3.2.1=h0a44026_1007
+  - libgfortran=3.0.1=h93005f0_2
+  - libiconv=1.16=h1de35cc_0
+  - libpng=1.6.37=ha441bb4_0
+  - libxml2=2.9.10=h3b9e6c8_1
+  - libxslt=1.1.34=h83b36ba_0
+  - lxml=4.2.5=py35hef8c89e_0
+  - mkl=2018.0.3=1
+  - ncurses=6.2=h0a44026_1
+  - openssl=1.0.2u=h1de35cc_0
+  - pcre=8.44=hb1e8313_0
+  - pip=10.0.1=py35_0
+  - pyqt=5.9.2=py35h655552a_2
+  - python=3.5.6=hc167b69_0
+  - qt=5.9.7=h468cd18_1
+  - readline=7.0=h1de35cc_5
+  - scipy=1.1.0=py35hcaad992_0
+  - setuptools=40.2.0=py35_0
+  - sip=4.19.8=py35h0a44026_0
+  - six=1.15.0=py_0
+  - sqlite=3.33.0=hffcf06c_0
+  - tk=8.6.10=hb0a8c7a_0
+  - wheel=0.35.1=py_0
+  - xz=5.2.5=h1de35cc_0
+  - zlib=1.2.11=h1de35cc_3
+  - pip:
+    - dendropy==4.4.0
+    - ete3==3.1.2
+    - numpy==1.18.5
+    - randomcolor==0.4.4.5
+
