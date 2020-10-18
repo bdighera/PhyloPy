@@ -23,7 +23,6 @@ A data driven protein ortholog finding tool utilizing phylogenetic trees, intron
      
       `conda env update --file environment.yml`
      
-      `
       
   4. Install the python dependencies
   
