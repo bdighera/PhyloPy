@@ -37,11 +37,15 @@ A data driven protein ortholog finding tool utilizing phylogenetic trees, intron
      Replace the current FastTree in the ./execs/ folder
 
   2. Clustalo can be acquired [here](http://www.clustal.org/omega/)
-     Run the following command in the working directory
-
-     `mv install-sh clustalo-1.2.0`
+     Select the proper binary for your system
      
-     replace this file in the ./execs/ folder
+     rename, and replace this file in the ./execs/ folder
+     
+     change permissions so that it can be executed
+     
+     Mac Users:
+     
+     `chmod 777 clustalo-1.2.0`
 
      Note: These alterations will only allow mac execution of PhyloPy visualization
 
