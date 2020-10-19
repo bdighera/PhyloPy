@@ -1,11 +1,6 @@
 from Bio.Align.Applications import ClustalOmegaCommandline
-from Bio import SeqIO
-from Bio.Seq import Seq
-from Bio.Alphabet import generic_protein
-from Bio.SeqRecord import SeqRecord
-import re, itertools, os, subprocess, sys, math, dendropy, pprint, ast
+import itertools, os, subprocess, sys, math, dendropy, pprint, ast
 from randomcolor import RandomColor
-from operator import itemgetter
 from FileHandler import MSAfileHandler, treeOBjFileHandler, ImageProcessingHandler
 
 
@@ -276,7 +271,6 @@ class PhyloTreeConstruction(object):
 
         t.show(tree_style=ts)
 
-    #ToDo: Need to get working
     def renderingTreewithGenomicContext(self):
 
         #Set parent proteins and genomic context retrieved from SQLite into a variable
@@ -315,8 +309,8 @@ class PhyloTreeConstruction(object):
 
         leafNames = t.get_leaf_names()
 
-        dummyIntronMotif = [0, 0, "[]", None, 12, "White", "White", None]
-        MSASeqlen = 0
+
+        MSASeqlen = len(self.proteinSeqs[0]*2)
         GCMotifs = []
 
         # The leaf names contain the description so the accession must be stripped in order to index with protein accessions from db
@@ -353,8 +347,19 @@ class PhyloTreeConstruction(object):
                         recordMotifs.append(genomic_context_motif)
                         recordMotifs.append(direction_motif)
 
+                        start_domain_location = [i for i in range(start_gene_location[i], end_gene_location[i]-10, 5)]
+                        end_domain_location = [i for i in range(start_gene_location[i]+10, end_gene_location[i], 5)]
+
+                        #TODO: Make it so that the domain name is properly parsed into the color square, stripping @ | might not be the best option
+                        domainMotif = [[start_domain_location[j], end_domain_location[j] - 5, "[]", 12, 12, GCcolors[k[0]],
+                                        GCcolors[k[0]], "arial|4|black|%s" % k[0].split('|')[0]] for j,k in enumerate(numberofDomains[i])]
+
+                        for motif in domainMotif:
+                            recordMotifs.append(motif)
+
 
                     elif coding_direction[i] == '+':
+
                         genomic_context_motif = [start_gene_location[i], end_gene_location[i], "[]", 12, 12, "Black", "White", "arial|6|black|%s" % geneName[i]]
                         direction_motif = [end_gene_location[i], int(end_gene_location[i]) + 10, ">", 12, 12,
                                            "Black", "Black", None]
@@ -362,8 +367,19 @@ class PhyloTreeConstruction(object):
                         recordMotifs.append(genomic_context_motif)
                         recordMotifs.append(direction_motif)
 
+                        start_domain_location = [i for i in range(start_gene_location[i], end_gene_location[i] - 10, 5)]
+                        end_domain_location = [i for i in range(start_gene_location[i] + 10, end_gene_location[i], 5)]
+
+                        #TODO: Make it so that the domain name is properly parsed into the color square, stripping @ | might not be the best option
+                        domainMotif = [[start_domain_location[j], end_domain_location[j] - 5, "[]", 12, 12, GCcolors[k[0]],
+                                        GCcolors[k[0]], "arial|4|black|%s" % k[0].split('|')[0]] for j, k in enumerate(numberofDomains[i])]
+
+                        for motif in domainMotif:
+                            recordMotifs.append(motif)
+
 
                 else:
+                    dummyIntronMotif = [0, 0, "[]", None, 12, "White", "White", None]
                     recordMotifs.append(dummyIntronMotif)
 
             GCMotifs.append(recordMotifs)
@@ -377,4 +393,5 @@ class PhyloTreeConstruction(object):
 
 
         t.show(tree_style=ts)
+
 
