@@ -1,18 +1,32 @@
-import re, itertools, os, subprocess, sys, math, dendropy, pprint, ast
+import ast
 from ImageProcessor import PhyloTreeConstruction
-from SQLiteRetriever import RecordRetrival, SQLiteChecker
+from SQLiteRetriever import RecordRetrival
 
-def Main():
+def Main(accessionList = None):
+
     # Params
     # *********************************************************
     inputFile = 'InputSeqs.txt'
-    runGenomicContextFig = False
+    runGenomicContextFig = True
     runIntronFig = True
     runDomainFig = True
+    JupyterNotebookInlineFig = True
     # **********************************************************
     V = RecordRetrival()
 
-    V.retrieveRecords(inputFile)
+    if JupyterNotebookInlineFig == True:
+        if accessionList != None:
+
+            V.retrieveRecordsbyList(accessionList)
+
+        elif accessionList == None:
+            raise ValueError('Need to pass list of accession numbers to Main.py')
+        pass
+
+    elif JupyterNotebookInlineFig == False:
+        V.retrieveFileRecords(inputFile)
+        pass
+
 
     records = V.pullDBrecords(dbfile='Records.db')
 
@@ -23,6 +37,7 @@ def Main():
     parentDomains = [ast.literal_eval(record[0][13]) for record in records]
     introns = [record[0][14] for record in records]
     exonLength = [record[0][15] for record in records]
+    taxonomy = [record[0][16] for record in records]
 
     Phylo = PhyloTreeConstruction(proteinAccession,
                                   proteinSeq,
@@ -30,7 +45,8 @@ def Main():
                                   genomicContext,
                                   parentDomains,
                                   introns,
-                                  exonLength)
+                                  exonLength,
+                                  JupyterNotebookInlineFig)
 
 
     if runIntronFig == True:
@@ -41,6 +57,16 @@ def Main():
 
     if runDomainFig == True:
         Phylo.renderingTreewithDomains()
+
+
+    return [proteinAccession,
+            proteinSeq,
+            proteinDescription,
+            genomicContext,
+            parentDomains,
+            introns,
+            exonLength,
+            taxonomy]
 
 if __name__ == '__main__':
     Main()

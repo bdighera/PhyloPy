@@ -2,13 +2,14 @@ from Bio.Align.Applications import ClustalOmegaCommandline
 import itertools, os, subprocess, sys, math, dendropy, pprint, ast
 from randomcolor import RandomColor
 from FileHandler import MSAfileHandler, treeOBjFileHandler, ImageProcessingHandler
+from IPython.display import display
 
 
 from ete3 import Tree, SeqMotifFace, TreeStyle, TextFace
 
 class PhyloTreeConstruction(object):
 
-    def __init__(self, proteinAccession, proteinSeq, proteinDescription, GenomicContext, ParentDomains, Introns, ExonLenghts):
+    def __init__(self, proteinAccession, proteinSeq, proteinDescription, GenomicContext, ParentDomains, Introns, ExonLenghts, JupyterNoteBookFigure):
         self.proteinAccessions = proteinAccession
         self.proteinSeqs = proteinSeq
         self.proteinDescs = proteinDescription
@@ -16,6 +17,7 @@ class PhyloTreeConstruction(object):
         self.parentDomains = ParentDomains
         self.Introns = Introns
         self.exonLengths = ExonLenghts
+        self.JNfig = JupyterNoteBookFigure
         self.collectMultipleSequencingAlignment()
         self.rootedTreeConstruction()
 
@@ -165,8 +167,11 @@ class PhyloTreeConstruction(object):
 
             (dt & leafNames[i]).add_face(domainSeqFace[i], 0, "aligned")
 
-        dt.show(tree_style=dts)
-        sys.exit()
+        if self.JNfig == True:
+            display(dt.render('%%inline', tree_style=dts))
+        elif self.JNfig == False:
+            dt.show(tree_style=dts)
+
 
     def renderingTreewithIntrons(self):
 
@@ -269,7 +274,10 @@ class PhyloTreeConstruction(object):
             SeqMotifFace("A" * 1, [[0, 80, "[]", None, 8, "Blue", 'Blue', "arial|4|white|%s" % str('Phase 2')]]),
             column=0)
 
-        t.show(tree_style=ts)
+        if self.JNfig == True:
+            display(t.render('%%inline', tree_style=ts))
+        elif self.JNfig == False:
+            t.show(tree_style=ts)
 
     def renderingTreewithGenomicContext(self):
 
@@ -340,44 +348,45 @@ class PhyloTreeConstruction(object):
 
                     if coding_direction[i] == '-':
 
-                        genomic_context_motif = [start_gene_location[i], end_gene_location[i], "[]", 12, 12, "Black", "White", "arial|6|black|%s" % geneName[i]]
+                        genomic_context_motif = [start_gene_location[i], end_gene_location[i], "[]", 12, 12, "Black", "White", "arial|1|black|%s" % geneName[i]]
                         direction_motif = [start_gene_location[i], int(start_gene_location[i]) - 10, ">", 12, 12,
                                            "Black", "Black", None]
 
                         recordMotifs.append(genomic_context_motif)
-                        recordMotifs.append(direction_motif)
+
 
                         start_domain_location = [i for i in range(start_gene_location[i], end_gene_location[i]-10, 5)]
                         end_domain_location = [i for i in range(start_gene_location[i]+10, end_gene_location[i], 5)]
 
                         #TODO: Make it so that the domain name is properly parsed into the color square, stripping @ | might not be the best option
                         domainMotif = [[start_domain_location[j], end_domain_location[j] - 5, "[]", 12, 12, GCcolors[k[0]],
-                                        GCcolors[k[0]], "arial|4|black|%s" % k[0].split('|')[0]] for j,k in enumerate(numberofDomains[i])]
+                                        GCcolors[k[0]], "arial|1|black|%s" % k[0].split('|')[0]] for j,k in enumerate(numberofDomains[i])]
 
                         for motif in domainMotif:
                             recordMotifs.append(motif)
 
+                        recordMotifs.append(direction_motif)
 
                     elif coding_direction[i] == '+':
 
-                        genomic_context_motif = [start_gene_location[i], end_gene_location[i], "[]", 12, 12, "Black", "White", "arial|6|black|%s" % geneName[i]]
+                        genomic_context_motif = [start_gene_location[i], end_gene_location[i], "[]", 12, 12, "Black", "White", "arial|1|black|%s" % geneName[i]]
                         direction_motif = [end_gene_location[i], int(end_gene_location[i]) + 10, ">", 12, 12,
                                            "Black", "Black", None]
 
                         recordMotifs.append(genomic_context_motif)
-                        recordMotifs.append(direction_motif)
+
 
                         start_domain_location = [i for i in range(start_gene_location[i], end_gene_location[i] - 10, 5)]
                         end_domain_location = [i for i in range(start_gene_location[i] + 10, end_gene_location[i], 5)]
 
                         #TODO: Make it so that the domain name is properly parsed into the color square, stripping @ | might not be the best option
                         domainMotif = [[start_domain_location[j], end_domain_location[j] - 5, "[]", 12, 12, GCcolors[k[0]],
-                                        GCcolors[k[0]], "arial|4|black|%s" % k[0].split('|')[0]] for j, k in enumerate(numberofDomains[i])]
+                                        GCcolors[k[0]], "arial|1|black|%s" % k[0].split('|')[0]] for j, k in enumerate(numberofDomains[i])]
 
                         for motif in domainMotif:
                             recordMotifs.append(motif)
 
-
+                        recordMotifs.append(direction_motif)
                 else:
                     dummyIntronMotif = [0, 0, "[]", None, 12, "White", "White", None]
                     recordMotifs.append(dummyIntronMotif)
@@ -385,13 +394,15 @@ class PhyloTreeConstruction(object):
             GCMotifs.append(recordMotifs)
 
 
-        GCSeqFace = [SeqMotifFace('' * MSASeqlen, gapcolor="black", seq_format='line', scale_factor=1,
+        GCSeqFace = [SeqMotifFace(gapcolor="black", seq_format='line', scale_factor=1,
                                       motifs=GCMotifs[i]) for i in range(len(GCMotifs))]
 
         for i in range(len(GCSeqFace)):
             (t & leafNames[i]).add_face(GCSeqFace[i], 0, "aligned")
 
 
-        t.show(tree_style=ts)
-
-
+        if self.JNfig == True:
+            ts.scale=120
+            display(t.render('%%inline', tree_style=ts, dpi=800))
+        elif self.JNfig == False:
+            t.show(tree_style=ts)

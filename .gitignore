@@ -1,5 +1,6 @@
 # executible files
 execs/*
+execs/
 
 # Input protein file
 InputSeqs.txt
@@ -67,6 +68,8 @@ celerybeat.pid
 *.sage.py
 
 # Environments
+PhyloEnv/
+phlyloenv/
 .env
 .venv
 env/

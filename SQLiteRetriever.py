@@ -1,4 +1,4 @@
-import sqlite3
+import sqlite3, sys
 from Bio import SeqIO
 
 class RecordRetrival():
@@ -8,7 +8,20 @@ class RecordRetrival():
 
     #This method is used to retrieve desired records for visualization from input file
     #input file consists of file in cd with fasta formatting
-    def retrieveRecords(self, filename):
+    def retrieveFileRecords(self, filename):
+
+
+        with open(filename, 'r') as handle:
+            contents = handle.readlines()
+            contents = [i.strip('\n') for i in contents]
+
+            handle.close()
+
+        self.inputAccessionList = contents
+
+        return self.inputAccessionList
+
+    def retrieveFastaRecords(self, filename):
 
         print('Ensure that input file is in fasta formatting')
 
@@ -31,6 +44,11 @@ class RecordRetrival():
         records = SQL.checkRecords()
 
         return records
+
+    def retrieveRecordsbyList(self, accessionList):
+        self.inputAccessionList = accessionList
+        return self.inputAccessionList
+
 
 class SQLiteChecker():
     def __init__(self, proteinAccession, dbfile):
