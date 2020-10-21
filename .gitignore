@@ -11,6 +11,11 @@ ErrorBin/*
 # Record SQlite DB
 Records.db
 
+# JupyterNoteBook
+.idea/
+.ipynb_checkpoints
+.DS_Store
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
