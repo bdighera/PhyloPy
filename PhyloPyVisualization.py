@@ -2,16 +2,18 @@ import ast
 from ImageProcessor import PhyloTreeConstruction
 from SQLiteRetriever import RecordRetrival
 
-def Main(accessionList = None):
+def Main(accessionList = None, fileHandle = '', prune='',
+         JupyterNotebook= False,
+         runGenomicContextFig = True,
+         runIntronFig= True,
+         runDomainFig= True,
+         printLeafAccession= True,
+         printLeafDesc= True):
 
-    # Params
-    # *********************************************************
     inputFile = 'InputSeqs.txt'
-    runGenomicContextFig = True
-    runIntronFig = True
-    runDomainFig = True
-    JupyterNotebookInlineFig = True
-    # **********************************************************
+    JupyterNotebookInlineFig = JupyterNotebook
+
+
     V = RecordRetrival()
 
     if JupyterNotebookInlineFig == True:
@@ -19,13 +21,17 @@ def Main(accessionList = None):
 
             V.retrieveRecordsbyList(accessionList)
 
-        elif accessionList == None:
+        elif accessionList == None and fileHandle == None:
             raise ValueError('Need to pass list of accession numbers to Main.py')
+
+        elif fileHandle != '':
+            V.retrieveFileRecords(fileHandle)
+
         pass
 
     elif JupyterNotebookInlineFig == False:
-        V.retrieveFileRecords(inputFile)
-        pass
+        V.retrieveFastaRecords(inputFile)
+
 
 
     records = V.pullDBrecords(dbfile='Records.db')
@@ -46,7 +52,10 @@ def Main(accessionList = None):
                                   parentDomains,
                                   introns,
                                   exonLength,
-                                  JupyterNotebookInlineFig)
+                                  JupyterNotebookInlineFig,
+                                  prune,
+                                  printLeafAccession,
+                                  printLeafDesc)
 
 
     if runIntronFig == True:
@@ -60,7 +69,6 @@ def Main(accessionList = None):
 
 
     return [proteinAccession,
-            proteinSeq,
             proteinDescription,
             genomicContext,
             parentDomains,
@@ -69,4 +77,4 @@ def Main(accessionList = None):
             taxonomy]
 
 if __name__ == '__main__':
-    Main()
+    Main(prune='NP_008879.3_heat_shock_70_kDa_protein_13_precursor__Homo_sapiens_')

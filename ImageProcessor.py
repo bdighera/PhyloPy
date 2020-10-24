@@ -9,7 +9,8 @@ from ete3 import Tree, SeqMotifFace, TreeStyle, TextFace
 
 class PhyloTreeConstruction(object):
 
-    def __init__(self, proteinAccession, proteinSeq, proteinDescription, GenomicContext, ParentDomains, Introns, ExonLenghts, JupyterNoteBookFigure):
+    def __init__(self, proteinAccession, proteinSeq, proteinDescription, GenomicContext, ParentDomains, Introns, ExonLenghts, JupyterNoteBookFigure, prune,
+                 printLeafAccession, printLeafDesc):
         self.proteinAccessions = proteinAccession
         self.proteinSeqs = proteinSeq
         self.proteinDescs = proteinDescription
@@ -20,6 +21,9 @@ class PhyloTreeConstruction(object):
         self.JNfig = JupyterNoteBookFigure
         self.collectMultipleSequencingAlignment()
         self.rootedTreeConstruction()
+        self.prune = prune
+        self.printLeafAccession = printLeafAccession
+        self.printLeafDesc = printLeafDesc
 
     def rootedTreeConstruction(self):
 
@@ -27,7 +31,9 @@ class PhyloTreeConstruction(object):
         out_file = os.path.join('execs', 'tmp', 'unrooted_tree.nwk')
 
         subprocess.call(["./execs/FastTree", "-out", out_file, in_file])
-        print('\n' + subprocess.list2cmdline(["./execs/FastTree", in_file, ">", out_file]))
+
+        if self.JNfig == False:
+            print('\n' + subprocess.list2cmdline(["./execs/FastTree", in_file, ">", out_file]))
 
         rooted_tree = dendropy.Tree.get_from_path(out_file, schema='newick')
         rooted_tree.reroot_at_midpoint()
@@ -51,8 +57,8 @@ class PhyloTreeConstruction(object):
         except AttributeError:
             pass
 
-        print('\n' + 'ROOTED TREE HAS BEEN CONSTRUCTED...')
-
+        if self.JNfig == False:
+            print('\n' + 'ROOTED TREE HAS BEEN CONSTRUCTED...')
 
     def collectMultipleSequencingAlignment(self):
 
@@ -73,7 +79,8 @@ class PhyloTreeConstruction(object):
                 msaprotein_writeFile.write(protein)
 
 
-        print('\n' + 'CREATING MULTIPLE SEQUENCING ALIGNMENT...')
+        if self.JNfig == False:
+            print('\n' + 'CREATING MULTIPLE SEQUENCING ALIGNMENT...')
 
         clustalomega_cline = ClustalOmegaCommandline(cmd=os.path.join('execs', "clustalo-1.2.0"),
                                                      infile=in_file,
@@ -81,7 +88,8 @@ class PhyloTreeConstruction(object):
         clustalomega_cline()
         MSA.msa_FileCorrection()
 
-        print('\n' + 'MULTIPLE SEQUENCING ALIGNMENT HAS BEEN CREATED...')
+        if self.JNfig == False:
+            print('\n' + 'MULTIPLE SEQUENCING ALIGNMENT HAS BEEN CREATED...')
 
     def constructTreeObj(self):
 
@@ -172,7 +180,6 @@ class PhyloTreeConstruction(object):
         elif self.JNfig == False:
             dt.show(tree_style=dts)
 
-
     def renderingTreewithIntrons(self):
 
         proteinAccessions = self.proteinAccessions
@@ -203,14 +210,22 @@ class PhyloTreeConstruction(object):
         MSASeqlen = 0
         intronMotifs = []
 
+        if self.printLeafDesc != False:
+            print(leafNames)
+
         #The leaf names contain the description so the accession must be stripped in order to index with protein accessions from db
         leafAccessionExtracted = treeObj.getProteinAccession([leaf for leaf in leafNames])
 
         for leaf in leafAccessionExtracted:  # Corrects introns, and builds intron motifs
 
+            if self.printLeafAccession != False:
+                for name in leaf:
+                    print(name)
+
             #leaf = str(leaf.split('_')[0] + '_' + leaf.split('_')[1])
             intronPhases = accessionIntrons[leaf][0]
             exonLengths = accessionIntrons[leaf][1]
+
 
             if intronPhases and exonLengths != 'NONE':
 
@@ -316,7 +331,6 @@ class PhyloTreeConstruction(object):
         ts.show_branch_support = True
 
         leafNames = t.get_leaf_names()
-
 
         MSASeqlen = len(self.proteinSeqs[0]*2)
         GCMotifs = []

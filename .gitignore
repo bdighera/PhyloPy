@@ -2,6 +2,9 @@
 execs/*
 execs/
 
+# Data Files
+/Seqs
+
 # Input protein file
 InputSeqs.txt
 
