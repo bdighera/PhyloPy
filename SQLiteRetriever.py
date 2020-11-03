@@ -66,18 +66,29 @@ class SQLiteChecker():
 
         for accession in self.proteinAccessionList:
 
-            #SQL statement getting all of the table names ie. DNAJC, HSP70
-            C.execute("SELECT name FROM sqlite_master WHERE type='table'")
+            C.execute('SELECT * FROM HSP70s WHERE ProteinAccession= (?)''', (accession,))
 
-            for tablename in C.fetchall():
-                tablename = tablename[0]
+            data = C.fetchall()
 
-                #Checking all of the tables for the accession number
-                C.execute('SELECT * FROM {t} WHERE ProteinAccession= (?)'''.format(t=tablename), (accession,))
+            if data != []:
+                dataList.append(data)
 
-                data = C.fetchall()
-
-                if data != []:
-                    dataList.append(data)
+            #ToDO: Make a switch for all tables, if uncommented then it will search all tables. Cant have repeats in diff tables tho
+            # #SQL statement getting all of the table names ie. DNAJC, HSP70
+            # C.execute("SELECT name FROM sqlite_master WHERE type='table'")
+            #
+            # for tablename in C.fetchall():
+            #     tablename = tablename[0]
+            #
+            #     #Checking all of the tables for the accession number
+            #     C.execute('SELECT * FROM {t} WHERE ProteinAccession= (?)'''.format(t=tablename), (accession,))
+            #
+            #     #Checking only HSP70s table
+            #     #C.execute('SELECT * FROM HSP70s WHERE ProteinAccession= (?)'''.format(t=tablename), (accession,))
+            #
+            #     data = C.fetchall()
+            #
+            #     if data != []:
+            #         dataList.append(data)
 
         return dataList

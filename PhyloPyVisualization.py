@@ -1,14 +1,15 @@
-import ast
+import ast, sys
 from ImageProcessor import PhyloTreeConstruction
 from SQLiteRetriever import RecordRetrival
+from SequenceCollector import collectTaxonomy
 
 def Main(accessionList = None, fileHandle = '', prune='',
          JupyterNotebook= False,
          runGenomicContextFig = True,
          runIntronFig= True,
          runDomainFig= True,
-         printLeafAccession= True,
-         printLeafDesc= True):
+         printLeafAccession= False,
+         printLeafDesc= False):
 
     inputFile = 'InputSeqs.txt'
     JupyterNotebookInlineFig = JupyterNotebook
@@ -30,7 +31,7 @@ def Main(accessionList = None, fileHandle = '', prune='',
         pass
 
     elif JupyterNotebookInlineFig == False:
-        V.retrieveFastaRecords(inputFile)
+        V.retrieveFileRecords(inputFile)
 
 
 
@@ -44,6 +45,8 @@ def Main(accessionList = None, fileHandle = '', prune='',
     introns = [record[0][14] for record in records]
     exonLength = [record[0][15] for record in records]
     taxonomy = [record[0][16] for record in records]
+    commonNames = [record[0][17] for record in records]
+
 
     Phylo = PhyloTreeConstruction(proteinAccession,
                                   proteinSeq,
@@ -55,7 +58,8 @@ def Main(accessionList = None, fileHandle = '', prune='',
                                   JupyterNotebookInlineFig,
                                   prune,
                                   printLeafAccession,
-                                  printLeafDesc)
+                                  printLeafDesc,
+                                  commonNames)
 
 
     if runIntronFig == True:
@@ -74,7 +78,7 @@ def Main(accessionList = None, fileHandle = '', prune='',
             parentDomains,
             introns,
             exonLength,
-            taxonomy]
+            commonNames]
 
 if __name__ == '__main__':
-    Main(prune='NP_008879.3_heat_shock_70_kDa_protein_13_precursor__Homo_sapiens_')
+    Main()

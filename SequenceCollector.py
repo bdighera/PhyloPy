@@ -1,11 +1,12 @@
 from Bio import Entrez, SeqIO
 from Bio.Align.Applications import ClustalOmegaCommandline
-import subprocess, dendropy, sys, pprint, os
+import subprocess, dendropy, sys, pprint, os, sqlite3
 from randomcolor import RandomColor
+from SQLiteRetriever import RecordRetrival
 
 from FileHandler import IntronFileHandler, MSAfileHandler, treeOBjFileHandler, GCfileHandler
 
-class SequeuceCollector():
+class SequenceCollector():
 
     def __init__(self, proteinRecord):
         self.proteinRecord = proteinRecord
@@ -228,7 +229,11 @@ class GenomicContext():
                         except:
                             pass
 
-        #return gene_name_list, gene_start_list, gene_end_list, gene_direction_list, protein_accession_dict
+
+                    # if gb_info['GBQualifier_name'] == 'db_xref':
+                    #     if 'GeneID:' in gb_info['GBQualifier_value']:
+                    #         gene_id = str(gb_info['GBQualifier_value'])
+                    #         gene_id_list.append(gene_id)
 
         GC_List = []
         GC = GenomicContext(self.geneRecord)
@@ -324,3 +329,114 @@ class GenomicContext():
 
         return parent_protein_domains
 
+#TODO: Need to convert this function to work on single records in the Main.py file
+def collectTaxonomy(fileHandle, db_file='Records.db'):
+    '''
+    :param fileHandle: path to file containing protein accessions, will collect record from database
+    :return: Does not return anything, populates database file with updated info
+    '''
+
+    Entrez.email = 'bdighera@csu.fullerton.edu'
+
+    V = RecordRetrival()
+
+    V.retrieveFileRecords(fileHandle)
+
+    records = V.pullDBrecords(dbfile=db_file)
+
+    col_0 = [record[0][0] for record in records]
+    col_1 = [record[0][1] for record in records]
+    col_2 = [record[0][2] for record in records]
+    col_3 = [record[0][3] for record in records]
+    proteinID = [record[0][4] for record in records]
+    col_5 = [record[0][5] for record in records]
+    col_6 = [record[0][6] for record in records]
+    col_7 = [record[0][7] for record in records]
+    col_8 = [record[0][8] for record in records]
+    col_9 = [record[0][9] for record in records]
+    col_10 = [record[0][10] for record in records]
+    col_11 = [record[0][11] for record in records]
+    col_12 = [record[0][12] for record in records]
+    col_13 = [record[0][13] for record in records]
+    col_14 = [record[0][14] for record in records]
+    col_15 = [record[0][15] for record in records]
+    col_16 = [record[0][16] for record in records]
+    CommonNames = []
+
+
+    i=0
+    percent_error = (i/(len(proteinID))) * 100
+
+    for id in proteinID:
+        try:
+
+            elinkResult = Entrez.read(
+                Entrez.elink(db='taxonomy', dbfrom='protein', id=id, api_key='42c8b18ba1ceca33301e1fa5e582eed81509'))
+
+            tax_id = elinkResult[0]['LinkSetDb'][0]['Link'][0]['Id']
+
+            taxonomy = Entrez.read(
+                Entrez.efetch(db='taxonomy', id=tax_id, api_key='42c8b18ba1ceca33301e1fa5e582eed81509'))
+
+            GenBankCommonName = taxonomy[0]['OtherNames']['GenbankCommonName']
+            CommonNames.append(GenBankCommonName)
+
+        except KeyError:
+            i += 1
+            CommonNames.append('N/A')
+            pass
+        except IndexError:
+            try:
+                GenBankCommonName = taxonomy[0]['OtherNames']['GenbankCommonName']
+                CommonNames.append(GenBankCommonName)
+            except KeyError:
+                i += 1
+                CommonNames.append('N/A')
+                pass
+            pass
+
+    with open(os.path.join('Seqs','TaxonomyFile.txt'), 'a') as writeFile:
+        name = [writeFile.write(name + '\n') for name in CommonNames]
+
+
+    print('Taxonomy Collected for the file path: %s' % fileHandle)
+    print('Total Number of sequences collected: %s' % str(len(proteinID)))
+    print('Total Number of N/A Sequences: %s, Error Percentage: %s' % (str(i), str(percent_error)))
+
+    connect = sqlite3.connect('Records.db')
+
+    C = connect.cursor()
+
+    for i in range(len(CommonNames)):
+
+        try:
+            C.execute('''INSERT INTO HSP70s VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)''',
+                      (col_0[i],
+                        col_1[i],
+                       col_2[i],
+                       col_3[i],
+                       proteinID[i],
+                       col_5[i],
+                       col_6[i],
+                       col_7[i],
+                       col_8[i],
+                       col_9[i],
+                       col_10[i],
+                       col_11[i],
+                       col_12[i],
+                       col_13[i],
+                       col_14[i],
+                       col_15[i],
+                       col_16[i],
+                       CommonNames[i]))
+        except sqlite3.IntegrityError:
+            print('here')
+            pass
+
+    connect.commit()
+    connect.close()
+
+if __name__ == '__main__':
+
+    file = os.path.join('Seqs', 'allHSP70s.txt')
+    collectTaxonomy(fileHandle=file)

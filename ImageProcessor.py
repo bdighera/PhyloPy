@@ -10,7 +10,7 @@ from ete3 import Tree, SeqMotifFace, TreeStyle, TextFace
 class PhyloTreeConstruction(object):
 
     def __init__(self, proteinAccession, proteinSeq, proteinDescription, GenomicContext, ParentDomains, Introns, ExonLenghts, JupyterNoteBookFigure, prune,
-                 printLeafAccession, printLeafDesc):
+                 printLeafAccession, printLeafDesc, commonNames):
         self.proteinAccessions = proteinAccession
         self.proteinSeqs = proteinSeq
         self.proteinDescs = proteinDescription
@@ -19,11 +19,13 @@ class PhyloTreeConstruction(object):
         self.Introns = Introns
         self.exonLengths = ExonLenghts
         self.JNfig = JupyterNoteBookFigure
+        self.commonNames = commonNames
         self.collectMultipleSequencingAlignment()
         self.rootedTreeConstruction()
         self.prune = prune
         self.printLeafAccession = printLeafAccession
         self.printLeafDesc = printLeafDesc
+
 
     def rootedTreeConstruction(self):
 
@@ -72,10 +74,12 @@ class PhyloTreeConstruction(object):
 
         protein_description = self.proteinDescs
         protein_sequence = self.proteinSeqs
+        common_names = self.commonNames
 
         with open(in_file, 'a') as msaprotein_writeFile:
             for i in range(len(protein_description)):
-                protein = '\n'+ '>' + str(protein_description[i]) + '\n' + str(protein_sequence[i])
+
+                protein = '\n'+ '>' + str(protein_description[i]) + str(common_names[i]).replace(' ', '_') + '\n' + str(protein_sequence[i])
                 msaprotein_writeFile.write(protein)
 
 
@@ -160,7 +164,7 @@ class PhyloTreeConstruction(object):
 
             domainColor = [domainColors[domain] for domain in domains]
 
-            leafMotfis = [[int(domainStart[i]), int(domainEnd[i]), "<>", None, 12, "Black", domainColor[i], "arial|4|white|%s" % str(domainColor[i])] for i in range(domainLen)]
+            leafMotfis = [[int(domainStart[i].strip('<')), int(domainEnd[i].strip('>')), "<>", None, 12, "Black", domainColor[i], "arial|4|white|%s" % str(domainColor[i])] for i in range(domainLen)]
 
             domainMotifs.append(leafMotfis)
 
@@ -168,7 +172,7 @@ class PhyloTreeConstruction(object):
 
         MSASeqLen = IPH.intron_fix(leafNames[0], None)[1]
 
-        domainSeqFace = [SeqMotifFace('-' * MSASeqLen, gapcolor="black", seq_format='line', scale_factor=1,
+        domainSeqFace = [SeqMotifFace(' ' * MSASeqLen, gapcolor="black", seq_format='line', scale_factor=1,
                                       motifs=domainMotifs[i]) for i in range(len(domainMotifs))]
 
         for i in range(len(domainSeqFace)):
@@ -211,7 +215,9 @@ class PhyloTreeConstruction(object):
         intronMotifs = []
 
         if self.printLeafDesc != False:
-            print(leafNames)
+            for leaf in leafNames:
+                print(leaf)
+
 
         #The leaf names contain the description so the accession must be stripped in order to index with protein accessions from db
         leafAccessionExtracted = treeObj.getProteinAccession([leaf for leaf in leafNames])
@@ -219,8 +225,7 @@ class PhyloTreeConstruction(object):
         for leaf in leafAccessionExtracted:  # Corrects introns, and builds intron motifs
 
             if self.printLeafAccession != False:
-                for name in leaf:
-                    print(name)
+                print(leaf)
 
             #leaf = str(leaf.split('_')[0] + '_' + leaf.split('_')[1])
             intronPhases = accessionIntrons[leaf][0]
@@ -236,7 +241,11 @@ class PhyloTreeConstruction(object):
 
                 exonLength = [math.floor(int(exonLengths[i][0].split('-')[1]) / 3) for i in range(len(exonLengths))]
 
-                exonLocation, MSASeqlen = IPH.intron_fix(leaf, exonLength)
+                try:
+                    exonLocation, MSASeqlen = IPH.intron_fix(leaf, exonLength)
+
+                except IndexError:
+                    print('Index Error Found at: %s. Please remove and rerun.' % leaf)
 
                 recordMotifs = []
 
@@ -338,6 +347,8 @@ class PhyloTreeConstruction(object):
         # The leaf names contain the description so the accession must be stripped in order to index with protein accessions from db
         leafAccessionExtracted = treeObj.getProteinAccession([leaf for leaf in leafNames])
 
+        # Corrects the coding direction of the current working leaf so that all parent proteins go
+        #coding_direction = treeObj.fix_coding_direction(accessionGCdict, leafAccessionExtracted)
 
         for j, leaf in enumerate(leafAccessionExtracted):
 
@@ -351,63 +362,66 @@ class PhyloTreeConstruction(object):
             numberofDomains = [GCleafRecord[i]['domain'] for i in range(domainLen)]
 
 
+
             start_gene_location = [i for i in range(10, int(numberofGenes * 100 + 100), 100)]
             end_gene_location = [i for i in range(90, int(numberofGenes * 100 + 200), 100)]
 
             recordMotifs = []
 
-            for i in range(numberofGenes):
+            try:
+                for i in range(numberofGenes):
 
-                if i != None:
+                    if i != None:
 
-                    if coding_direction[i] == '-':
+                        if coding_direction[i] == '-':
 
-                        genomic_context_motif = [start_gene_location[i], end_gene_location[i], "[]", 12, 12, "Black", "White", "arial|1|black|%s" % geneName[i]]
-                        direction_motif = [start_gene_location[i], int(start_gene_location[i]) - 10, ">", 12, 12,
-                                           "Black", "Black", None]
+                            genomic_context_motif = [start_gene_location[i], end_gene_location[i], "[]", 12, 12, "Black", "White", "arial|1|black|%s" % geneName[i]]
+                            direction_motif = [start_gene_location[i], int(start_gene_location[i]) - 10, ">", 12, 12,
+                                               "Black", "Black", None]
 
-                        recordMotifs.append(genomic_context_motif)
-
-
-                        start_domain_location = [i for i in range(start_gene_location[i], end_gene_location[i]-10, 5)]
-                        end_domain_location = [i for i in range(start_gene_location[i]+10, end_gene_location[i], 5)]
-
-                        #TODO: Make it so that the domain name is properly parsed into the color square, stripping @ | might not be the best option
-                        domainMotif = [[start_domain_location[j], end_domain_location[j] - 5, "[]", 12, 12, GCcolors[k[0]],
-                                        GCcolors[k[0]], "arial|1|black|%s" % k[0].split('|')[0]] for j,k in enumerate(numberofDomains[i])]
-
-                        for motif in domainMotif:
-                            recordMotifs.append(motif)
-
-                        recordMotifs.append(direction_motif)
-
-                    elif coding_direction[i] == '+':
-
-                        genomic_context_motif = [start_gene_location[i], end_gene_location[i], "[]", 12, 12, "Black", "White", "arial|1|black|%s" % geneName[i]]
-                        direction_motif = [end_gene_location[i], int(end_gene_location[i]) + 10, ">", 12, 12,
-                                           "Black", "Black", None]
-
-                        recordMotifs.append(genomic_context_motif)
+                            recordMotifs.append(genomic_context_motif)
 
 
-                        start_domain_location = [i for i in range(start_gene_location[i], end_gene_location[i] - 10, 5)]
-                        end_domain_location = [i for i in range(start_gene_location[i] + 10, end_gene_location[i], 5)]
+                            start_domain_location = [i for i in range(start_gene_location[i], end_gene_location[i]-10, 5)]
+                            end_domain_location = [i for i in range(start_gene_location[i]+10, end_gene_location[i], 5)]
 
-                        #TODO: Make it so that the domain name is properly parsed into the color square, stripping @ | might not be the best option
-                        domainMotif = [[start_domain_location[j], end_domain_location[j] - 5, "[]", 12, 12, GCcolors[k[0]],
-                                        GCcolors[k[0]], "arial|1|black|%s" % k[0].split('|')[0]] for j, k in enumerate(numberofDomains[i])]
+                            #TODO: Make it so that the domain name is properly parsed into the color square, stripping @ | might not be the best option
+                            domainMotif = [[start_domain_location[j], end_domain_location[j] - 5, "[]", 12, 12, GCcolors[k[0]],
+                                            GCcolors[k[0]], "arial|1|black|%s" % k[0].split('|')[0]] for j,k in enumerate(numberofDomains[i])]
 
-                        for motif in domainMotif:
-                            recordMotifs.append(motif)
+                            for motif in domainMotif:
+                                recordMotifs.append(motif)
 
-                        recordMotifs.append(direction_motif)
-                else:
-                    dummyIntronMotif = [0, 0, "[]", None, 12, "White", "White", None]
-                    recordMotifs.append(dummyIntronMotif)
+                            recordMotifs.append(direction_motif)
 
-            GCMotifs.append(recordMotifs)
+                        elif coding_direction[i] == '+':
+
+                            genomic_context_motif = [start_gene_location[i], end_gene_location[i], "[]", 12, 12, "Black", "White", "arial|1|black|%s" % geneName[i]]
+                            direction_motif = [end_gene_location[i], int(end_gene_location[i]) + 10, ">", 12, 12,
+                                               "Black", "Black", None]
+
+                            recordMotifs.append(genomic_context_motif)
 
 
+                            start_domain_location = [i for i in range(start_gene_location[i], end_gene_location[i] - 10, 5)]
+                            end_domain_location = [i for i in range(start_gene_location[i] + 10, end_gene_location[i], 5)]
+
+                            #TODO: Make it so that the domain name is properly parsed into the color square, stripping @ | might not be the best option
+                            domainMotif = [[start_domain_location[j], end_domain_location[j] - 5, "[]", 12, 12, GCcolors[k[0]],
+                                            GCcolors[k[0]], "arial|1|black|%s" % k[0].split('|')[0]] for j, k in enumerate(numberofDomains[i])]
+
+                            for motif in domainMotif:
+                                recordMotifs.append(motif)
+
+                            recordMotifs.append(direction_motif)
+                    else:
+                        dummyIntronMotif = [0, 0, "[]", None, 12, "White", "White", None]
+                        recordMotifs.append(dummyIntronMotif)
+
+                GCMotifs.append(recordMotifs)
+
+            except IndexError:
+                print('Genomic Context Index Error at Sequence: %s' % leaf)
         GCSeqFace = [SeqMotifFace(gapcolor="black", seq_format='line', scale_factor=1,
                                       motifs=GCMotifs[i]) for i in range(len(GCMotifs))]
 

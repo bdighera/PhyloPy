@@ -152,6 +152,44 @@ class treeOBjFileHandler():
 
         return accessionList
 
+    def fix_coding_direction(self, GCRecords, leafNames):
+
+
+        GCRecords = GCRecords
+        leafNames = leafNames
+
+        flipList = []
+
+        for leaf in leafNames:
+
+            workingRecord = GCRecords[leaf]
+
+            print(workingRecord)
+
+            parentProteincodingdirection = [workingRecord[i]['coding_direction'] for i in range(len(workingRecord)) if workingRecord[i]['protein_accession'] == leaf]
+
+            print(parentProteincodingdirection)
+
+            if parentProteincodingdirection == ['-']:
+
+                flipList.append({leaf:'flip'})
+
+
+            if parentProteincodingdirection == ['+']:
+                flipList.append({leaf:'retain'})
+
+            #print(workingRecord)
+            #domainLen = len(workingRecord)
+
+            #numberofGenes = len([workingRecord[i]['gene_start_seq'] for i in range(domainLen)])
+            #coding_direction = [workingRecord[i]['coding_direction'] for i in range(domainLen)]
+
+
+
+
+        print(flipList)
+
+        sys.exit()
 
 class GCfileHandler():
 

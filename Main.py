@@ -49,7 +49,7 @@ def Main():
             if SQL.checkRecords() != True:
 
                 # Initialize Sequence Collector class with input of the working protein accession record
-                Seq = SequeuceCollector(proteinRecord)
+                Seq = SequenceCollector(proteinRecord)
 
                 # collects the protein ID for the current working protein
                 # protein ID is needed in order to establish relationship between NCBI databases ie. Gene, Protein, etc.
