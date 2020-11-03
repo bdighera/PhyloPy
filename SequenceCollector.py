@@ -230,11 +230,16 @@ class GenomicContext():
                             pass
 
 
-                    # if gb_info['GBQualifier_name'] == 'db_xref':
-                    #     if 'GeneID:' in gb_info['GBQualifier_value']:
-                    #         gene_id = str(gb_info['GBQualifier_value'])
-                    #         gene_id_list.append(gene_id)
+                    if gb_info['GBQualifier_name'] == 'db_xref':
+                        try:
+                            if protein_accession_dict[name]:
+                                if 'GeneID:' in gb_info['GBQualifier_value']:
+                                    gene_id = str(gb_info['GBQualifier_value'])
+                                    gene_id_list.append(gene_id.replace('GeneID:', ''))
 
+                        except:
+                            print('banger')
+                            pass
         GC_List = []
         GC = GenomicContext(self.geneRecord)
         for i in range(len(gene_name_list)):
@@ -247,7 +252,8 @@ class GenomicContext():
                 'gene_end_seq':gene_end_list[i],
                 'coding_direction':gene_direction_list[i],
                 'protein_accession':protein_accession_dict[gene_name_list[i]],
-                'domain': completeDomains[0].values()[0]
+                'domain': list(completeDomains[0].values())[0],
+                'gene_id':gene_id_list[i]
 
             })
 
