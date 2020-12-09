@@ -3,9 +3,13 @@
   <component name="ChangeListManager">
     <list default="true" id="dd71ad87-f453-40a9-8a48-86d8d66976f4" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/FileHandler.py" afterPath="$PROJECT_DIR$/FileHandler.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ImageProcessor.py" afterPath="$PROJECT_DIR$/ImageProcessor.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/InputSeqs.txt" afterPath="$PROJECT_DIR$/InputSeqs.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Main.py" afterPath="$PROJECT_DIR$/Main.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/PhyloPyVisualization.py" afterPath="$PROJECT_DIR$/PhyloPyVisualization.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SequenceCollector.py" afterPath="$PROJECT_DIR$/SequenceCollector.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sqlite.py" afterPath="$PROJECT_DIR$/Sqlite.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Visualization Notebook.ipynb" afterPath="$PROJECT_DIR$/Visualization Notebook.ipynb" />
     </list>
     <ignored path="PhyloPy.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -20,10 +24,10 @@
   <component name="CoverageDataManager">
     <SUITE FILE_PATH="coverage/PhyloPy$Main.coverage" NAME="Main Coverage Results" MODIFIED="1604381480304" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/PhyloPy$test.coverage" NAME="test Coverage Results" MODIFIED="1603862474439" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/PhyloPy$PhyloPyVisualization.coverage" NAME="PhyloPyVisualization Coverage Results" MODIFIED="1604377741827" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/PhyloPy$Sqlite.coverage" NAME="Sqlite Coverage Results" MODIFIED="1604265351594" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/PhyloPy$SequenceCollector.coverage" NAME="SequenceCollector Coverage Results" MODIFIED="1604270067736" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/PhyloPy$PhyloPyVisualization.coverage" NAME="PhyloPyVisualization Coverage Results" MODIFIED="1604982568171" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/PhyloPy$Sqlite.coverage" NAME="Sqlite Coverage Results" MODIFIED="1604890200272" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/PhyloPy$ImageProcessor.coverage" NAME="ImageProcessor Coverage Results" MODIFIED="1604294814154" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/PhyloPy$SequenceCollector.coverage" NAME="SequenceCollector Coverage Results" MODIFIED="1604899009595" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
   <component name="CreatePatchCommitExecutor">
     <option name="PATCH_PATH" value="" />
@@ -34,11 +38,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="PhyloPyVisualization.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="PhyloPyVisualization.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/PhyloPyVisualization.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1200">
-              <caret line="80" column="23" selection-start-line="80" selection-start-column="23" selection-end-line="80" selection-end-column="23" />
+            <state relative-caret-position="15">
+              <caret line="9" column="27" selection-start-line="9" selection-start-column="27" selection-end-line="9" selection-end-column="27" />
               <folding>
                 <element signature="e#0#15#0" expanded="true" />
               </folding>
@@ -49,22 +53,24 @@
       <file leaf-file-name="SequenceCollector.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/SequenceCollector.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="419">
-              <caret line="338" column="54" selection-start-line="338" selection-start-column="54" selection-end-line="338" selection-end-column="54" />
+            <state relative-caret-position="2655">
+              <caret line="504" column="0" selection-start-line="504" selection-start-column="0" selection-end-line="504" selection-end-column="0" />
               <folding>
                 <element signature="e#0#29#0" expanded="true" />
-                <element signature="e#349#4506#0" expanded="false" />
-                <element signature="e#392#454#0" expanded="false" />
-                <element signature="e#497#882#0" expanded="false" />
-                <element signature="e#918#1671#0" expanded="false" />
-                <element signature="e#1714#2839#0" expanded="false" />
-                <element signature="e#2894#3734#0" expanded="false" />
-                <element signature="e#3781#4506#0" expanded="false" />
-                <element signature="e#5654#6889#0" expanded="false" />
-                <element signature="e#11171#12204#0" expanded="false" />
-                <element signature="e#12263#13916#0" expanded="false" />
-                <element signature="e#14060#17639#0" expanded="false" />
-                <marker date="1604380863125" expanded="true" signature="16835:16898" ph="INSERT INTO HSP70s... " />
+                <element signature="e#424#4581#0" expanded="false" />
+                <element signature="e#467#529#0" expanded="false" />
+                <element signature="e#572#957#0" expanded="false" />
+                <element signature="e#993#1746#0" expanded="false" />
+                <element signature="e#2969#3809#0" expanded="false" />
+                <element signature="e#3856#4581#0" expanded="false" />
+                <element signature="e#4611#13949#0" expanded="false" />
+                <element signature="e#5729#6964#0" expanded="false" />
+                <element signature="e#7154#11110#0" expanded="false" />
+                <element signature="e#11202#12235#0" expanded="false" />
+                <element signature="e#12294#13947#0" expanded="false" />
+                <element signature="e#14091#14284#1" expanded="false" />
+                <marker date="1604893251914" expanded="true" signature="16721:16784" ph="INSERT INTO HSP70s... " />
+                <marker date="1604893251914" expanded="true" signature="20444:20507" ph="INSERT INTO HSP70s... " />
               </folding>
             </state>
           </provider>
@@ -73,24 +79,25 @@
       <file leaf-file-name="SQLiteRetriever.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/SQLiteRetriever.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="296">
-              <caret line="75" column="132" selection-start-line="75" selection-start-column="132" selection-end-line="75" selection-end-column="132" />
+            <state relative-caret-position="930">
+              <caret line="68" column="43" selection-start-line="68" selection-start-column="43" selection-end-line="68" selection-end-column="43" />
               <folding>
                 <element signature="e#1419#1497#0" expanded="false" />
-                <marker date="1604297608060" expanded="true" signature="2070:2118" ph="SELECT * FRO... missing_value" />
-                <marker date="1604297608060" expanded="true" signature="2472:2521" ph="SELECT name sqlite_master" />
-                <marker date="1604297608060" expanded="true" signature="2740:2785" ph="SELECT * FRO... missing_value" />
-                <marker date="1604297608060" expanded="true" signature="2914:2962" ph="SELECT * FRO... missing_value" />
+                <element signature="e#1581#1700#0" expanded="false" />
+                <marker date="1604982566107" expanded="true" signature="2070:2118" ph="SELECT * FRO... missing_value" />
+                <marker date="1604982566107" expanded="true" signature="2472:2521" ph="SELECT name sqlite_master" />
+                <marker date="1604982566107" expanded="true" signature="2740:2785" ph="SELECT * FRO... missing_value" />
+                <marker date="1604982566107" expanded="true" signature="2914:2962" ph="SELECT * FRO... missing_value" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Main.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Main.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1035">
-              <caret line="10" column="43" selection-start-line="10" selection-start-column="43" selection-end-line="10" selection-end-column="43" />
+            <state relative-caret-position="1485">
+              <caret line="105" column="16" selection-start-line="105" selection-start-column="16" selection-end-line="105" selection-end-column="16" />
               <folding>
                 <element signature="e#0#21#0" expanded="true" />
               </folding>
@@ -101,15 +108,14 @@
       <file leaf-file-name="Sqlite.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Sqlite.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="570">
-              <caret line="38" column="0" selection-start-line="38" selection-start-column="0" selection-end-line="38" selection-end-column="0" />
+            <state relative-caret-position="630">
+              <caret line="90" column="53" selection-start-line="90" selection-start-column="53" selection-end-line="90" selection-end-column="53" />
               <folding>
                 <element signature="e#0#19#0" expanded="true" />
-                <element signature="e#3514#4088#0" expanded="false" />
-                <element signature="e#4203#4977#0" expanded="false" />
-                <marker date="1604296933105" expanded="true" signature="2136:2197" ph="INSERT INTO HSP70... " />
-                <marker date="1604296933105" expanded="true" signature="3881:3943" ph="SELECT Prote... HSP70" />
-                <marker date="1604296933105" expanded="true" signature="4454:4942" ph="CREATE TABLE... INSERTTABLENAME" />
+                <element signature="e#623#3372#0" expanded="false" />
+                <marker date="1604890219093" expanded="true" signature="2136:2197" ph="INSERT INTO HSP70... " />
+                <marker date="1604890219093" expanded="true" signature="3881:3944" ph="SELECT Prote... HSP70" />
+                <marker date="1604890219093" expanded="true" signature="4455:4943" ph="CREATE TABLE... INSERTTABLENAME" />
               </folding>
             </state>
           </provider>
@@ -118,16 +124,18 @@
       <file leaf-file-name="FileHandler.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/FileHandler.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="540">
-              <caret line="166" column="31" selection-start-line="166" selection-start-column="31" selection-end-line="166" selection-end-column="31" />
+            <state relative-caret-position="570">
+              <caret line="165" column="158" selection-start-line="165" selection-start-column="158" selection-end-line="165" selection-end-column="158" />
               <folding>
-                <element signature="e#150#1719#0" expanded="false" />
-                <element signature="e#1750#3914#0" expanded="false" />
-                <element signature="e#4333#5056#0" expanded="false" />
-                <element signature="e#6087#8625#0" expanded="false" />
-                <element signature="e#8743#8747#0" expanded="false" />
-                <element signature="e#8817#10393#0" expanded="false" />
-                <element signature="e#10464#11063#0" expanded="false" />
+                <element signature="e#0#24#0" expanded="true" />
+                <element signature="e#182#1751#0" expanded="false" />
+                <element signature="e#1782#3946#0" expanded="false" />
+                <element signature="e#4365#5088#0" expanded="false" />
+                <element signature="e#10109#12647#0" expanded="false" />
+                <element signature="e#12737#15146#0" expanded="false" />
+                <element signature="e#12765#12769#0" expanded="false" />
+                <element signature="e#12839#14415#0" expanded="false" />
+                <element signature="e#14486#15085#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -136,15 +144,16 @@
       <file leaf-file-name="ImageProcessor.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/ImageProcessor.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="165">
-              <caret line="79" column="53" selection-start-line="79" selection-start-column="53" selection-end-line="79" selection-end-column="53" />
+            <state relative-caret-position="1620">
+              <caret line="356" column="16" selection-start-line="356" selection-start-column="16" selection-end-line="356" selection-end-column="16" />
               <folding>
                 <element signature="e#0#58#0" expanded="true" />
-                <element signature="e#1237#2699#0" expanded="false" />
-                <element signature="e#3987#4325#0" expanded="false" />
-                <element signature="e#4379#4948#0" expanded="false" />
-                <element signature="e#4999#7348#0" expanded="false" />
-                <element signature="e#7399#11913#0" expanded="false" />
+                <element signature="e#617#1224#0" expanded="false" />
+                <element signature="e#1274#2736#0" expanded="false" />
+                <element signature="e#4024#4362#0" expanded="false" />
+                <element signature="e#4416#4985#0" expanded="false" />
+                <element signature="e#5036#7385#0" expanded="false" />
+                <element signature="e#7436#11950#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -165,15 +174,15 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/FileHandler.py" />
         <option value="$PROJECT_DIR$/test.py" />
         <option value="$PROJECT_DIR$/Seqs/Primates_HSPA1.txt" />
+        <option value="$PROJECT_DIR$/Main.py" />
         <option value="$PROJECT_DIR$/Sqlite.py" />
+        <option value="$PROJECT_DIR$/SequenceCollector.py" />
         <option value="$PROJECT_DIR$/SQLiteRetriever.py" />
         <option value="$PROJECT_DIR$/ImageProcessor.py" />
+        <option value="$PROJECT_DIR$/FileHandler.py" />
         <option value="$PROJECT_DIR$/PhyloPyVisualization.py" />
-        <option value="$PROJECT_DIR$/SequenceCollector.py" />
-        <option value="$PROJECT_DIR$/Main.py" />
       </list>
     </option>
   </component>
@@ -212,7 +221,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -223,7 +232,7 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scratches" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -235,7 +244,7 @@
     <property name="js-jscs-nodeInterpreter" value="/usr/local/bin/node" />
     <property name="FullScreen" value="true" />
   </component>
-  <component name="RunManager" selected="Python.Main">
+  <component name="RunManager" selected="Python.PhyloPyVisualization">
     <configuration default="false" name="PhyloPyVisualization" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -570,11 +579,11 @@
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="Python.Main" />
-        <item index="1" class="java.lang.String" itemvalue="Python.PhyloPyVisualization" />
-        <item index="2" class="java.lang.String" itemvalue="Python.ImageProcessor" />
-        <item index="3" class="java.lang.String" itemvalue="Python.SequenceCollector" />
-        <item index="4" class="java.lang.String" itemvalue="Python.Sqlite" />
+        <item index="0" class="java.lang.String" itemvalue="Python.PhyloPyVisualization" />
+        <item index="1" class="java.lang.String" itemvalue="Python.SequenceCollector" />
+        <item index="2" class="java.lang.String" itemvalue="Python.Sqlite" />
+        <item index="3" class="java.lang.String" itemvalue="Python.Main" />
+        <item index="4" class="java.lang.String" itemvalue="Python.ImageProcessor" />
       </list>
     </recent_temporary>
   </component>
@@ -593,26 +602,26 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.14861111" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.14861111" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.39056832" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3700121" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39056832" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3700121" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -628,13 +637,6 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/FileHandler.py</url>
-          <line>191</line>
-          <option name="timeStamp" value="24" />
-        </line-breakpoint>
-      </breakpoints>
       <default-breakpoints>
         <breakpoint type="python-exception">
           <properties notifyOnTerminate="true" exception="BaseException">
@@ -642,11 +644,118 @@
           </properties>
         </breakpoint>
       </default-breakpoints>
-      <option name="time" value="29" />
+      <option name="time" value="34" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/PhyloPyVisualization.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#15#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SequenceCollector.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="7560">
+          <caret line="504" column="0" selection-start-line="504" selection-start-column="0" selection-end-line="504" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#29#0" expanded="true" />
+            <element signature="e#424#4581#0" expanded="false" />
+            <element signature="e#467#529#0" expanded="false" />
+            <element signature="e#572#957#0" expanded="false" />
+            <element signature="e#993#1746#0" expanded="false" />
+            <element signature="e#2969#3809#0" expanded="false" />
+            <element signature="e#3856#4581#0" expanded="false" />
+            <element signature="e#4611#13949#0" expanded="false" />
+            <element signature="e#5729#6964#0" expanded="false" />
+            <element signature="e#7154#11110#0" expanded="false" />
+            <element signature="e#11202#12235#0" expanded="false" />
+            <element signature="e#12294#13947#0" expanded="false" />
+            <element signature="e#14091#14284#1" expanded="false" />
+            <marker date="1604893251914" expanded="true" signature="16721:16784" ph="INSERT INTO HSP70s... " />
+            <marker date="1604893251914" expanded="true" signature="20444:20507" ph="INSERT INTO HSP70s... " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SQLiteRetriever.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="930">
+          <caret line="68" column="43" selection-start-line="68" selection-start-column="43" selection-end-line="68" selection-end-column="43" />
+          <folding>
+            <element signature="e#1419#1497#0" expanded="false" />
+            <element signature="e#1581#1700#0" expanded="false" />
+            <marker date="1604982566107" expanded="true" signature="2070:2118" ph="SELECT * FRO... missing_value" />
+            <marker date="1604982566107" expanded="true" signature="2472:2521" ph="SELECT name sqlite_master" />
+            <marker date="1604982566107" expanded="true" signature="2740:2785" ph="SELECT * FRO... missing_value" />
+            <marker date="1604982566107" expanded="true" signature="2914:2962" ph="SELECT * FRO... missing_value" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Main.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1485">
+          <caret line="105" column="16" selection-start-line="105" selection-start-column="16" selection-end-line="105" selection-end-column="16" />
+          <folding>
+            <element signature="e#0#21#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Sqlite.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="630">
+          <caret line="90" column="53" selection-start-line="90" selection-start-column="53" selection-end-line="90" selection-end-column="53" />
+          <folding>
+            <element signature="e#0#19#0" expanded="true" />
+            <element signature="e#623#3372#0" expanded="false" />
+            <marker date="1604890219093" expanded="true" signature="2136:2197" ph="INSERT INTO HSP70... " />
+            <marker date="1604890219093" expanded="true" signature="3881:3944" ph="SELECT Prote... HSP70" />
+            <marker date="1604890219093" expanded="true" signature="4455:4943" ph="CREATE TABLE... INSERTTABLENAME" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/FileHandler.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="570">
+          <caret line="165" column="158" selection-start-line="165" selection-start-column="158" selection-end-line="165" selection-end-column="158" />
+          <folding>
+            <element signature="e#0#24#0" expanded="true" />
+            <element signature="e#182#1751#0" expanded="false" />
+            <element signature="e#1782#3946#0" expanded="false" />
+            <element signature="e#4365#5088#0" expanded="false" />
+            <element signature="e#10109#12647#0" expanded="false" />
+            <element signature="e#12737#15146#0" expanded="false" />
+            <element signature="e#12765#12769#0" expanded="false" />
+            <element signature="e#12839#14415#0" expanded="false" />
+            <element signature="e#14486#15085#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ImageProcessor.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1620">
+          <caret line="356" column="16" selection-start-line="356" selection-start-column="16" selection-end-line="356" selection-end-column="16" />
+          <folding>
+            <element signature="e#0#58#0" expanded="true" />
+            <element signature="e#617#1224#0" expanded="false" />
+            <element signature="e#1274#2736#0" expanded="false" />
+            <element signature="e#4024#4362#0" expanded="false" />
+            <element signature="e#4416#4985#0" expanded="false" />
+            <element signature="e#5036#7385#0" expanded="false" />
+            <element signature="e#7436#11950#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/PhyloPyVisualization.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="915">
@@ -663,18 +772,20 @@
           <caret line="330" column="0" selection-start-line="330" selection-start-column="0" selection-end-line="330" selection-end-column="0" />
           <folding>
             <element signature="e#0#29#0" expanded="true" />
-            <element signature="e#349#4506#0" expanded="false" />
-            <element signature="e#392#454#0" expanded="false" />
-            <element signature="e#497#882#0" expanded="false" />
-            <element signature="e#918#1671#0" expanded="false" />
-            <element signature="e#1714#2839#0" expanded="false" />
-            <element signature="e#2894#3734#0" expanded="false" />
-            <element signature="e#3781#4506#0" expanded="false" />
-            <element signature="e#5654#6889#0" expanded="false" />
-            <element signature="e#11171#12204#0" expanded="false" />
-            <element signature="e#12263#13916#0" expanded="false" />
-            <element signature="e#14060#17639#0" expanded="false" />
-            <marker date="1604380863125" expanded="true" signature="16835:16898" ph="INSERT INTO HSP70s... " />
+            <element signature="e#424#4581#0" expanded="false" />
+            <element signature="e#467#529#0" expanded="false" />
+            <element signature="e#572#957#0" expanded="false" />
+            <element signature="e#993#1746#0" expanded="false" />
+            <element signature="e#2969#3809#0" expanded="false" />
+            <element signature="e#3856#4581#0" expanded="false" />
+            <element signature="e#4611#13949#0" expanded="false" />
+            <element signature="e#5729#6964#0" expanded="false" />
+            <element signature="e#7154#11110#0" expanded="false" />
+            <element signature="e#11202#12235#0" expanded="false" />
+            <element signature="e#12294#13947#0" expanded="false" />
+            <element signature="e#14091#14284#1" expanded="false" />
+            <marker date="1604893251914" expanded="true" signature="16721:16784" ph="INSERT INTO HSP70s... " />
+            <marker date="1604893251914" expanded="true" signature="20444:20507" ph="INSERT INTO HSP70s... " />
           </folding>
         </state>
       </provider>
@@ -685,10 +796,11 @@
           <caret line="75" column="47" selection-start-line="75" selection-start-column="47" selection-end-line="75" selection-end-column="47" />
           <folding>
             <element signature="e#1419#1497#0" expanded="false" />
-            <marker date="1604297608060" expanded="true" signature="2070:2118" ph="SELECT * FRO... missing_value" />
-            <marker date="1604297608060" expanded="true" signature="2472:2521" ph="SELECT name sqlite_master" />
-            <marker date="1604297608060" expanded="true" signature="2740:2785" ph="SELECT * FRO... missing_value" />
-            <marker date="1604297608060" expanded="true" signature="2914:2962" ph="SELECT * FRO... missing_value" />
+            <element signature="e#1581#1700#0" expanded="false" />
+            <marker date="1604982566107" expanded="true" signature="2070:2118" ph="SELECT * FRO... missing_value" />
+            <marker date="1604982566107" expanded="true" signature="2472:2521" ph="SELECT name sqlite_master" />
+            <marker date="1604982566107" expanded="true" signature="2740:2785" ph="SELECT * FRO... missing_value" />
+            <marker date="1604982566107" expanded="true" signature="2914:2962" ph="SELECT * FRO... missing_value" />
           </folding>
         </state>
       </provider>
@@ -709,11 +821,10 @@
           <caret line="58" column="0" selection-start-line="58" selection-start-column="0" selection-end-line="59" selection-end-column="25" />
           <folding>
             <element signature="e#0#19#0" expanded="true" />
-            <element signature="e#3514#4088#0" expanded="false" />
-            <element signature="e#4203#4977#0" expanded="false" />
-            <marker date="1604296933105" expanded="true" signature="2136:2197" ph="INSERT INTO HSP70... " />
-            <marker date="1604296933105" expanded="true" signature="3881:3943" ph="SELECT Prote... HSP70" />
-            <marker date="1604296933105" expanded="true" signature="4454:4942" ph="CREATE TABLE... INSERTTABLENAME" />
+            <element signature="e#623#3372#0" expanded="false" />
+            <marker date="1604890219093" expanded="true" signature="2136:2197" ph="INSERT INTO HSP70... " />
+            <marker date="1604890219093" expanded="true" signature="3881:3944" ph="SELECT Prote... HSP70" />
+            <marker date="1604890219093" expanded="true" signature="4455:4943" ph="CREATE TABLE... INSERTTABLENAME" />
           </folding>
         </state>
       </provider>
@@ -723,13 +834,15 @@
         <state relative-caret-position="540">
           <caret line="166" column="31" selection-start-line="166" selection-start-column="31" selection-end-line="166" selection-end-column="31" />
           <folding>
-            <element signature="e#150#1719#0" expanded="false" />
-            <element signature="e#1750#3914#0" expanded="false" />
-            <element signature="e#4333#5056#0" expanded="false" />
-            <element signature="e#6087#8625#0" expanded="false" />
-            <element signature="e#8743#8747#0" expanded="false" />
-            <element signature="e#8817#10393#0" expanded="false" />
-            <element signature="e#10464#11063#0" expanded="false" />
+            <element signature="e#0#24#0" expanded="true" />
+            <element signature="e#182#1751#0" expanded="false" />
+            <element signature="e#1782#3946#0" expanded="false" />
+            <element signature="e#4365#5088#0" expanded="false" />
+            <element signature="e#10109#12647#0" expanded="false" />
+            <element signature="e#12737#15146#0" expanded="false" />
+            <element signature="e#12765#12769#0" expanded="false" />
+            <element signature="e#12839#14415#0" expanded="false" />
+            <element signature="e#14486#15085#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -740,11 +853,12 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#0#58#0" expanded="true" />
-            <element signature="e#1237#2699#0" expanded="false" />
-            <element signature="e#3987#4325#0" expanded="false" />
-            <element signature="e#4379#4948#0" expanded="false" />
-            <element signature="e#4999#7348#0" expanded="false" />
-            <element signature="e#7399#11913#0" expanded="false" />
+            <element signature="e#617#1224#0" expanded="false" />
+            <element signature="e#1274#2736#0" expanded="false" />
+            <element signature="e#4024#4362#0" expanded="false" />
+            <element signature="e#4416#4985#0" expanded="false" />
+            <element signature="e#5036#7385#0" expanded="false" />
+            <element signature="e#7436#11950#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -764,13 +878,15 @@
         <state relative-caret-position="1200">
           <caret line="253" column="65" selection-start-line="253" selection-start-column="65" selection-end-line="253" selection-end-column="65" />
           <folding>
-            <element signature="e#150#1719#0" expanded="false" />
-            <element signature="e#1750#3914#0" expanded="false" />
-            <element signature="e#4333#5056#0" expanded="false" />
-            <element signature="e#6087#8625#0" expanded="false" />
-            <element signature="e#8743#8747#0" expanded="false" />
-            <element signature="e#8817#10393#0" expanded="false" />
-            <element signature="e#10464#11063#0" expanded="false" />
+            <element signature="e#0#24#0" expanded="true" />
+            <element signature="e#182#1751#0" expanded="false" />
+            <element signature="e#1782#3946#0" expanded="false" />
+            <element signature="e#4365#5088#0" expanded="false" />
+            <element signature="e#10109#12647#0" expanded="false" />
+            <element signature="e#12737#15146#0" expanded="false" />
+            <element signature="e#12765#12769#0" expanded="false" />
+            <element signature="e#12839#14415#0" expanded="false" />
+            <element signature="e#14486#15085#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -781,10 +897,11 @@
           <caret line="17" column="25" selection-start-line="17" selection-start-column="25" selection-end-line="17" selection-end-column="25" />
           <folding>
             <element signature="e#1419#1497#0" expanded="false" />
-            <marker date="1604297608060" expanded="true" signature="2070:2118" ph="SELECT * FRO... missing_value" />
-            <marker date="1604297608060" expanded="true" signature="2472:2521" ph="SELECT name sqlite_master" />
-            <marker date="1604297608060" expanded="true" signature="2740:2785" ph="SELECT * FRO... missing_value" />
-            <marker date="1604297608060" expanded="true" signature="2914:2962" ph="SELECT * FRO... missing_value" />
+            <element signature="e#1581#1700#0" expanded="false" />
+            <marker date="1604982566107" expanded="true" signature="2070:2118" ph="SELECT * FRO... missing_value" />
+            <marker date="1604982566107" expanded="true" signature="2472:2521" ph="SELECT name sqlite_master" />
+            <marker date="1604982566107" expanded="true" signature="2740:2785" ph="SELECT * FRO... missing_value" />
+            <marker date="1604982566107" expanded="true" signature="2914:2962" ph="SELECT * FRO... missing_value" />
           </folding>
         </state>
       </provider>
@@ -795,11 +912,12 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#0#58#0" expanded="true" />
-            <element signature="e#1237#2699#0" expanded="false" />
-            <element signature="e#3987#4325#0" expanded="false" />
-            <element signature="e#4379#4948#0" expanded="false" />
-            <element signature="e#4999#7348#0" expanded="false" />
-            <element signature="e#7399#11913#0" expanded="false" />
+            <element signature="e#617#1224#0" expanded="false" />
+            <element signature="e#1274#2736#0" expanded="false" />
+            <element signature="e#4024#4362#0" expanded="false" />
+            <element signature="e#4416#4985#0" expanded="false" />
+            <element signature="e#5036#7385#0" expanded="false" />
+            <element signature="e#7436#11950#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -812,22 +930,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/test.py" />
-    <entry file="file://$PROJECT_DIR$/FileHandler.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="540">
-          <caret line="166" column="31" selection-start-line="166" selection-start-column="31" selection-end-line="166" selection-end-column="31" />
-          <folding>
-            <element signature="e#150#1719#0" expanded="false" />
-            <element signature="e#1750#3914#0" expanded="false" />
-            <element signature="e#4333#5056#0" expanded="false" />
-            <element signature="e#6087#8625#0" expanded="false" />
-            <element signature="e#8743#8747#0" expanded="false" />
-            <element signature="e#8817#10393#0" expanded="false" />
-            <element signature="e#10464#11063#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Seqs/Primates_HSPA1.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="180">
@@ -837,86 +939,107 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Sqlite.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="570">
-          <caret line="38" column="0" selection-start-line="38" selection-start-column="0" selection-end-line="38" selection-end-column="0" />
+        <state relative-caret-position="630">
+          <caret line="90" column="53" selection-start-line="90" selection-start-column="53" selection-end-line="90" selection-end-column="53" />
           <folding>
             <element signature="e#0#19#0" expanded="true" />
-            <element signature="e#3514#4088#0" expanded="false" />
-            <element signature="e#4203#4977#0" expanded="false" />
-            <marker date="1604296933105" expanded="true" signature="2136:2197" ph="INSERT INTO HSP70... " />
-            <marker date="1604296933105" expanded="true" signature="3881:3943" ph="SELECT Prote... HSP70" />
-            <marker date="1604296933105" expanded="true" signature="4454:4942" ph="CREATE TABLE... INSERTTABLENAME" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ImageProcessor.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="79" column="53" selection-start-line="79" selection-start-column="53" selection-end-line="79" selection-end-column="53" />
-          <folding>
-            <element signature="e#0#58#0" expanded="true" />
-            <element signature="e#1237#2699#0" expanded="false" />
-            <element signature="e#3987#4325#0" expanded="false" />
-            <element signature="e#4379#4948#0" expanded="false" />
-            <element signature="e#4999#7348#0" expanded="false" />
-            <element signature="e#7399#11913#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/PhyloPyVisualization.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1200">
-          <caret line="80" column="23" selection-start-line="80" selection-start-column="23" selection-end-line="80" selection-end-column="23" />
-          <folding>
-            <element signature="e#0#15#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/SQLiteRetriever.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="296">
-          <caret line="75" column="132" selection-start-line="75" selection-start-column="132" selection-end-line="75" selection-end-column="132" />
-          <folding>
-            <element signature="e#1419#1497#0" expanded="false" />
-            <marker date="1604297608060" expanded="true" signature="2070:2118" ph="SELECT * FRO... missing_value" />
-            <marker date="1604297608060" expanded="true" signature="2472:2521" ph="SELECT name sqlite_master" />
-            <marker date="1604297608060" expanded="true" signature="2740:2785" ph="SELECT * FRO... missing_value" />
-            <marker date="1604297608060" expanded="true" signature="2914:2962" ph="SELECT * FRO... missing_value" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/SequenceCollector.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="419">
-          <caret line="338" column="54" selection-start-line="338" selection-start-column="54" selection-end-line="338" selection-end-column="54" />
-          <folding>
-            <element signature="e#0#29#0" expanded="true" />
-            <element signature="e#349#4506#0" expanded="false" />
-            <element signature="e#392#454#0" expanded="false" />
-            <element signature="e#497#882#0" expanded="false" />
-            <element signature="e#918#1671#0" expanded="false" />
-            <element signature="e#1714#2839#0" expanded="false" />
-            <element signature="e#2894#3734#0" expanded="false" />
-            <element signature="e#3781#4506#0" expanded="false" />
-            <element signature="e#5654#6889#0" expanded="false" />
-            <element signature="e#11171#12204#0" expanded="false" />
-            <element signature="e#12263#13916#0" expanded="false" />
-            <element signature="e#14060#17639#0" expanded="false" />
-            <marker date="1604380863125" expanded="true" signature="16835:16898" ph="INSERT INTO HSP70s... " />
+            <element signature="e#623#3372#0" expanded="false" />
+            <marker date="1604890219093" expanded="true" signature="2136:2197" ph="INSERT INTO HSP70... " />
+            <marker date="1604890219093" expanded="true" signature="3881:3944" ph="SELECT Prote... HSP70" />
+            <marker date="1604890219093" expanded="true" signature="4455:4943" ph="CREATE TABLE... INSERTTABLENAME" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1035">
-          <caret line="10" column="43" selection-start-line="10" selection-start-column="43" selection-end-line="10" selection-end-column="43" />
+        <state relative-caret-position="1485">
+          <caret line="105" column="16" selection-start-line="105" selection-start-column="16" selection-end-line="105" selection-end-column="16" />
           <folding>
             <element signature="e#0#21#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SequenceCollector.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2655">
+          <caret line="504" column="0" selection-start-line="504" selection-start-column="0" selection-end-line="504" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#29#0" expanded="true" />
+            <element signature="e#424#4581#0" expanded="false" />
+            <element signature="e#467#529#0" expanded="false" />
+            <element signature="e#572#957#0" expanded="false" />
+            <element signature="e#993#1746#0" expanded="false" />
+            <element signature="e#2969#3809#0" expanded="false" />
+            <element signature="e#3856#4581#0" expanded="false" />
+            <element signature="e#4611#13949#0" expanded="false" />
+            <element signature="e#5729#6964#0" expanded="false" />
+            <element signature="e#7154#11110#0" expanded="false" />
+            <element signature="e#11202#12235#0" expanded="false" />
+            <element signature="e#12294#13947#0" expanded="false" />
+            <element signature="e#14091#14284#1" expanded="false" />
+            <marker date="1604893251914" expanded="true" signature="16721:16784" ph="INSERT INTO HSP70s... " />
+            <marker date="1604893251914" expanded="true" signature="20444:20507" ph="INSERT INTO HSP70s... " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SQLiteRetriever.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="930">
+          <caret line="68" column="43" selection-start-line="68" selection-start-column="43" selection-end-line="68" selection-end-column="43" />
+          <folding>
+            <element signature="e#1419#1497#0" expanded="false" />
+            <element signature="e#1581#1700#0" expanded="false" />
+            <marker date="1604982566107" expanded="true" signature="2070:2118" ph="SELECT * FRO... missing_value" />
+            <marker date="1604982566107" expanded="true" signature="2472:2521" ph="SELECT name sqlite_master" />
+            <marker date="1604982566107" expanded="true" signature="2740:2785" ph="SELECT * FRO... missing_value" />
+            <marker date="1604982566107" expanded="true" signature="2914:2962" ph="SELECT * FRO... missing_value" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ImageProcessor.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1620">
+          <caret line="356" column="16" selection-start-line="356" selection-start-column="16" selection-end-line="356" selection-end-column="16" />
+          <folding>
+            <element signature="e#0#58#0" expanded="true" />
+            <element signature="e#617#1224#0" expanded="false" />
+            <element signature="e#1274#2736#0" expanded="false" />
+            <element signature="e#4024#4362#0" expanded="false" />
+            <element signature="e#4416#4985#0" expanded="false" />
+            <element signature="e#5036#7385#0" expanded="false" />
+            <element signature="e#7436#11950#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/FileHandler.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="570">
+          <caret line="165" column="158" selection-start-line="165" selection-start-column="158" selection-end-line="165" selection-end-column="158" />
+          <folding>
+            <element signature="e#0#24#0" expanded="true" />
+            <element signature="e#182#1751#0" expanded="false" />
+            <element signature="e#1782#3946#0" expanded="false" />
+            <element signature="e#4365#5088#0" expanded="false" />
+            <element signature="e#10109#12647#0" expanded="false" />
+            <element signature="e#12737#15146#0" expanded="false" />
+            <element signature="e#12765#12769#0" expanded="false" />
+            <element signature="e#12839#14415#0" expanded="false" />
+            <element signature="e#14486#15085#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/PhyloPyVisualization.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="9" column="27" selection-start-line="9" selection-start-column="27" selection-end-line="9" selection-end-column="27" />
+          <folding>
+            <element signature="e#0#15#0" expanded="true" />
           </folding>
         </state>
       </provider>

@@ -69,7 +69,7 @@ class SQLiteChecker():
     def checkRecords(self):
         C = self.connect.cursor()
 
-        C.execute('SELECT ProteinAccession FROM HSP70 WHERE ProteinAccession= (?)''',(self.proteinAccession,))
+        C.execute('SELECT ProteinAccession FROM HSP70s WHERE ProteinAccession= (?)''',(self.proteinAccession,))
 
         data = C.fetchall()
 
@@ -88,7 +88,7 @@ class makeNewTable():
         '''
         Insert the desired table name where it says insert table name
         '''
-        C.execute('''CREATE TABLE INSERTtableNAMEhere (UUID TEXT PRIMARY KEY ,ProteinAccession TEXT UNIQUE, ProteinSequence TEXT, ProteinDescription TEXT,
+        C.execute('''CREATE TABLE InsertTableNameHere (UUID TEXT PRIMARY KEY ,ProteinAccession TEXT UNIQUE, ProteinSequence TEXT, ProteinDescription TEXT,
                                   ProteinID INTEGER, CDSAccession TEXT, CDSSeq TEXT, CDSDescription TEXT, GenomicAccession TEXT,
                                 GenomicSeq TEXT, GenomicDescription TEXT, GeneID INTEGER, GenomicContext TEXT, ParentDomains TEXT,
                                 Introns TEXT, ExonLength TEXT, Taxonomy TEXT, CommonName TEXT)''')

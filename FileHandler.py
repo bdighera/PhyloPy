@@ -1,4 +1,5 @@
-import os, re, sys
+import os, re, sys, math
+from pprint import pprint
 from Bio import SeqIO, Seq, SeqRecord
 from Bio.Seq import Seq
 from Bio.SeqRecord import SeqRecord
@@ -152,44 +153,100 @@ class treeOBjFileHandler():
 
         return accessionList
 
-    def fix_coding_direction(self, GCRecords, leafNames):
+    def fix_coding_direction(self, workingRecord, geneID):
+
+        '''
+
+        :param workingRecord: The genomic context of the working record (current leaf) and all genes on the leaf with corresponding attributes
+        :param geneID: geneID of the current working record
+        :return: a new attribute is added to the genomic context "Flip". If parent gene conforms to the "+" designation it stays pointing right
+        If it does not, and has designation "-" then it is asigned true flip and every gene in the context will swap direction
+        '''
+
+        parentProteincodingdirection = [workingRecord[i]['coding_direction'] for i in range(len(workingRecord)) if int(workingRecord[i]['gene_id']) == geneID]
+
+        if parentProteincodingdirection == ['-']:
+            addFlipList = [dict(workingRecord[i], **{'flip':True}) for i in range(len(workingRecord))]
+            return addFlipList
 
 
-        GCRecords = GCRecords
-        leafNames = leafNames
+        if parentProteincodingdirection == ['+']:
+            addRetainList = [dict(workingRecord[i], **{'flip':False}) for i in range(len(workingRecord))]
+            return addRetainList
 
-        flipList = []
+    def fix_coding_alignment(self, workingRecord, geneID, maxLength):
+        '''
+        :param workingRecord: current genomic context for leaf
+        :param geneID: gene ID for parent protein
+        :return: start/end location for genomic context genes that will align all parent protein genes on the same line for easy interpretation
+        '''
 
-        for leaf in leafNames:
+        #Pulling out the gene on the leaf that matches the working protein gene id
 
-            workingRecord = GCRecords[leaf]
+        parentProteincodingdirection = [workingRecord[i] for i in range(len(workingRecord)) if int(workingRecord[i]['gene_id']) == geneID][0]
 
-            print(workingRecord)
+        #Number of genes in genomic context for the current leaf
+        numberOfGenes = len(workingRecord)
 
-            parentProteincodingdirection = [workingRecord[i]['coding_direction'] for i in range(len(workingRecord)) if workingRecord[i]['protein_accession'] == leaf]
+        #getting the int index of the working protein in the genomic context. This will be the middle gene for all.
+        parentProteinIndex = workingRecord.index(parentProteincodingdirection)
 
-            print(parentProteincodingdirection)
+        start_gene_location = [i for i in range(10, int(maxLength * 100 + 100), 100)]
+        end_gene_location = [i for i in range(90, int(maxLength * 100 + 200), 100)]
+        middleGeneIndex = math.ceil(maxLength / 2)
 
-            if parentProteincodingdirection == ['-']:
+        FixedRecord = []
 
-                flipList.append({leaf:'flip'})
+        for i in range(maxLength):
+            try:
+                if i == parentProteinIndex:
+                    location = {'img_start':start_gene_location[middleGeneIndex], 'img_end':end_gene_location[middleGeneIndex]}
+                    FixedRecord.append(dict(workingRecord[i], **location))
 
+                elif i == parentProteinIndex - 1:
+                    location = {'img_start': start_gene_location[middleGeneIndex - 1],
+                                'img_end': end_gene_location[middleGeneIndex - 1]}
+                    FixedRecord.append(dict(workingRecord[i], **location))
 
-            if parentProteincodingdirection == ['+']:
-                flipList.append({leaf:'retain'})
+                elif i == parentProteinIndex - 2:
+                    location = {'img_start': start_gene_location[middleGeneIndex - 2],
+                                'img_end': end_gene_location[middleGeneIndex - 2]}
+                    FixedRecord.append(dict(workingRecord[i], **location))
 
-            #print(workingRecord)
-            #domainLen = len(workingRecord)
+                elif i == parentProteinIndex - 3:
+                    location = {'img_start': start_gene_location[middleGeneIndex - 3],
+                                'img_end': end_gene_location[middleGeneIndex - 3]}
+                    FixedRecord.append(dict(workingRecord[i], **location))
 
-            #numberofGenes = len([workingRecord[i]['gene_start_seq'] for i in range(domainLen)])
-            #coding_direction = [workingRecord[i]['coding_direction'] for i in range(domainLen)]
+                elif i == parentProteinIndex - 4:
+                    location = {'img_start': start_gene_location[middleGeneIndex - 4],
+                                'img_end': end_gene_location[middleGeneIndex - 4]}
+                    FixedRecord.append(dict(workingRecord[i], **location))
 
+                elif i == parentProteinIndex + 1:
+                    location = {'img_start': start_gene_location[middleGeneIndex + 1],
+                                'img_end': end_gene_location[middleGeneIndex + 1]}
+                    FixedRecord.append(dict(workingRecord[i], **location))
 
+                elif i == parentProteinIndex + 2:
+                    location = {'img_start': start_gene_location[middleGeneIndex + 2],
+                                'img_end': end_gene_location[middleGeneIndex + 2]}
+                    FixedRecord.append(dict(workingRecord[i], **location))
 
+                elif i == parentProteinIndex + 3:
+                    location = {'img_start': start_gene_location[middleGeneIndex + 3],
+                                'img_end': end_gene_location[middleGeneIndex + 3]}
+                    FixedRecord.append(dict(workingRecord[i], **location))
 
-        print(flipList)
+                elif i == parentProteinIndex + 4:
+                    location = {'img_start': start_gene_location[middleGeneIndex + 4],
+                                'img_end': end_gene_location[middleGeneIndex + 4]}
+                    FixedRecord.append(dict(workingRecord[i], **location))
 
-        sys.exit()
+            except IndexError:
+                return FixedRecord
+
+        return FixedRecord
 
 class GCfileHandler():
 

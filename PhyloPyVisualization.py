@@ -40,13 +40,13 @@ def Main(accessionList = None, fileHandle = '', prune='',
     proteinAccession = [record[0][1] for record in records]
     proteinSeq = [record[0][2] for record in records]
     proteinDescription = [record[0][3] for record in records]
+    geneID = [record[0][11] for record in records]
     genomicContext = [ast.literal_eval(record[0][12]) for record in records]
     parentDomains = [ast.literal_eval(record[0][13]) for record in records]
     introns = [record[0][14] for record in records]
     exonLength = [record[0][15] for record in records]
     taxonomy = [record[0][16] for record in records]
     commonNames = [record[0][17] for record in records]
-
 
     Phylo = PhyloTreeConstruction(proteinAccession,
                                   proteinSeq,
@@ -59,7 +59,8 @@ def Main(accessionList = None, fileHandle = '', prune='',
                                   prune,
                                   printLeafAccession,
                                   printLeafDesc,
-                                  commonNames)
+                                  commonNames,
+                                  geneID)
 
 
     if runIntronFig == True:
