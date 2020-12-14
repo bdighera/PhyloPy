@@ -15,7 +15,14 @@ A data driven protein ortholog finding tool utilizing phylogenetic trees, intron
       
   3. Create the virtual environment in the cloned directory (see Cloning the Github Repo). Make sure evironment.yml file is in dir.
   
-      `conda PhyloPy create -f environment.yml python=2.7`
+      `conda create -n PhyloEnv -f environment.yml python=3.8.5`
+      
+     OR
+      
+     Add to existing conda virtual environment (after activating conda environment)
+     
+      `conda env update --file environment.yml`
+     
       
   4. Install the python dependencies
   
@@ -24,6 +31,31 @@ A data driven protein ortholog finding tool utilizing phylogenetic trees, intron
   5. Activating the conda environement.
   
       `conda activate PhyloPy`
+      
+# Making the project Mac/Windows Compatible
+
+### Making the project compatible with other os systems requires installing your own version of the standalone binary files.
+  
+  1. FastTree can be acquired [here](http://www.microbesonline.org/fasttree/)
+     Download the .cpp file and run the following command in terminal to compile. If command is not recognized install gcc
+     
+     `gcc -O3 -finline-functions -funroll-loops -Wall -o FastTree FastTree.c -lm`
+    
+     Replace the current FastTree in the ./execs/ folder
+
+  2. Clustalo can be acquired [here](http://www.clustal.org/omega/)
+     Select the proper binary for your system
+     
+     rename, and replace this file in the ./execs/ folder
+     
+     change permissions so that it can be executed
+     
+     Mac Users:
+     
+     `chmod 777 clustalo-1.2.0`
+
+     Note: These alterations will only allow mac execution of PhyloPy visualization
+
 
 # Downloading Executible Dependencies
 
@@ -103,6 +135,6 @@ $ git clone https://github.com/YOUR-USERNAME/YOUR-REPOSITORY
 
   1. Import Error: Cannot import package "SeqMotifFace"
   
-   Open terminal:
+   Open terminal (from within the project conda venv):
    
-    `conda install -c etetoolkit ete3`
+    conda install -c etetoolkit ete3
