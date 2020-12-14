@@ -2,7 +2,7 @@ from Bio import SeqIO
 from time import sleep
 from pprint import pprint
 from ArguementHandler import ArguementParser
-from SequenceCollector import SequeuceCollector, GenomicContext
+from SequenceCollector import SequenceCollector, GenomicContext
 from Sqlite import SQliteRecordInput, SQLiteChecker
 import sys
 
@@ -49,7 +49,7 @@ def Main():
             if SQL.checkRecords() != True:
 
                 # Initialize Sequence Collector class with input of the working protein accession record
-                Seq = SequeuceCollector(proteinRecord)
+                Seq = SequenceCollector(proteinRecord)
 
                 # collects the protein ID for the current working protein
                 # protein ID is needed in order to establish relationship between NCBI databases ie. Gene, Protein, etc.

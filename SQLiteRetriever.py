@@ -1,4 +1,4 @@
-import sqlite3
+import sqlite3, sys
 from Bio import SeqIO
 
 class RecordRetrival():
@@ -8,7 +8,20 @@ class RecordRetrival():
 
     #This method is used to retrieve desired records for visualization from input file
     #input file consists of file in cd with fasta formatting
-    def retrieveRecords(self, filename):
+    def retrieveFileRecords(self, filename):
+
+
+        with open(filename, 'r') as handle:
+            contents = handle.readlines()
+            contents = [i.strip('\n') for i in contents]
+
+            handle.close()
+
+        self.inputAccessionList = contents
+
+        return self.inputAccessionList
+
+    def retrieveFastaRecords(self, filename):
 
         print('Ensure that input file is in fasta formatting')
 
@@ -32,6 +45,11 @@ class RecordRetrival():
 
         return records
 
+    def retrieveRecordsbyList(self, accessionList):
+        self.inputAccessionList = accessionList
+        return self.inputAccessionList
+
+
 class SQLiteChecker():
     def __init__(self, proteinAccession, dbfile):
         self.dbfile= dbfile
@@ -48,18 +66,29 @@ class SQLiteChecker():
 
         for accession in self.proteinAccessionList:
 
-            #SQL statement getting all of the table names ie. DNAJC, HSP70
-            C.execute("SELECT name FROM sqlite_master WHERE type='table'")
+            C.execute('SELECT * FROM HSP70s WHERE ProteinAccession= (?)''', (accession,))
 
-            for tablename in C.fetchall():
-                tablename = tablename[0]
+            data = C.fetchall()
 
-                #Checking all of the tables for the accession number
-                C.execute('SELECT * FROM {t} WHERE ProteinAccession= (?)'''.format(t=tablename), (accession,))
+            if data != []:
+                dataList.append(data)
 
-                data = C.fetchall()
-
-                if data != []:
-                    dataList.append(data)
+            #ToDO: Make a switch for all tables, if uncommented then it will search all tables. Cant have repeats in diff tables tho
+            # #SQL statement getting all of the table names ie. DNAJC, HSP70
+            # C.execute("SELECT name FROM sqlite_master WHERE type='table'")
+            #
+            # for tablename in C.fetchall():
+            #     tablename = tablename[0]
+            #
+            #     #Checking all of the tables for the accession number
+            #     C.execute('SELECT * FROM {t} WHERE ProteinAccession= (?)'''.format(t=tablename), (accession,))
+            #
+            #     #Checking only HSP70s table
+            #     #C.execute('SELECT * FROM HSP70s WHERE ProteinAccession= (?)'''.format(t=tablename), (accession,))
+            #
+            #     data = C.fetchall()
+            #
+            #     if data != []:
+            #         dataList.append(data)
 
         return dataList

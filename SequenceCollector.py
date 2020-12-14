@@ -1,11 +1,14 @@
 from Bio import Entrez, SeqIO
 from Bio.Align.Applications import ClustalOmegaCommandline
-import subprocess, dendropy, sys, pprint, os
+import subprocess, dendropy, sys, pprint, os, sqlite3
 from randomcolor import RandomColor
+from SQLiteRetriever import RecordRetrival
+from time import sleep
+from Sqlite import SQliteRecordInput, SQLiteChecker
 
 from FileHandler import IntronFileHandler, MSAfileHandler, treeOBjFileHandler, GCfileHandler
 
-class SequeuceCollector():
+class SequenceCollector():
 
     def __init__(self, proteinRecord):
         self.proteinRecord = proteinRecord
@@ -228,8 +231,16 @@ class GenomicContext():
                         except:
                             pass
 
-        #return gene_name_list, gene_start_list, gene_end_list, gene_direction_list, protein_accession_dict
 
+                    if gb_info['GBQualifier_name'] == 'db_xref':
+                        try:
+                            if protein_accession_dict[name]:
+                                if 'GeneID:' in gb_info['GBQualifier_value']:
+                                    gene_id = str(gb_info['GBQualifier_value'])
+                                    gene_id_list.append(gene_id.replace('GeneID:', ''))
+
+                        except:
+                            pass
         GC_List = []
         GC = GenomicContext(self.geneRecord)
         for i in range(len(gene_name_list)):
@@ -242,7 +253,8 @@ class GenomicContext():
                 'gene_end_seq':gene_end_list[i],
                 'coding_direction':gene_direction_list[i],
                 'protein_accession':protein_accession_dict[gene_name_list[i]],
-                'domain': completeDomains[0].values()[0]
+                'domain': list(completeDomains[0].values())[0],
+                'gene_id':gene_id_list[i]
 
             })
 
@@ -324,3 +336,213 @@ class GenomicContext():
 
         return parent_protein_domains
 
+#TODO: Need to convert this function to work on single records in the Main.py file
+def collectTaxonomy(fileHandle, db_file='Records.db'):
+    '''
+    :param fileHandle: path to file containing protein accessions, will collect record from database
+    :return: Does not return anything, populates database file with updated info
+    '''
+
+    Entrez.email = 'bdighera@csu.fullerton.edu'
+
+    V = RecordRetrival()
+
+    V.retrieveFileRecords(fileHandle)
+
+    records = V.pullDBrecords(dbfile=db_file)
+
+    col_0 = [record[0][0] for record in records]
+    col_1 = [record[0][1] for record in records]
+    col_2 = [record[0][2] for record in records]
+    col_3 = [record[0][3] for record in records]
+    proteinID = [record[0][4] for record in records]
+    col_5 = [record[0][5] for record in records]
+    col_6 = [record[0][6] for record in records]
+    col_7 = [record[0][7] for record in records]
+    col_8 = [record[0][8] for record in records]
+    col_9 = [record[0][9] for record in records]
+    col_10 = [record[0][10] for record in records]
+    col_11 = [record[0][11] for record in records]
+    col_12 = [record[0][12] for record in records]
+    col_13 = [record[0][13] for record in records]
+    col_14 = [record[0][14] for record in records]
+    col_15 = [record[0][15] for record in records]
+    col_16 = [record[0][16] for record in records]
+    CommonNames = []
+
+
+    i=0
+    percent_error = (i/(len(proteinID))) * 100
+
+    for id in proteinID:
+        try:
+
+            elinkResult = Entrez.read(
+                Entrez.elink(db='taxonomy', dbfrom='protein', id=id, api_key='42c8b18ba1ceca33301e1fa5e582eed81509'))
+
+            tax_id = elinkResult[0]['LinkSetDb'][0]['Link'][0]['Id']
+
+            taxonomy = Entrez.read(
+                Entrez.efetch(db='taxonomy', id=tax_id, api_key='42c8b18ba1ceca33301e1fa5e582eed81509'))
+
+            GenBankCommonName = taxonomy[0]['OtherNames']['GenbankCommonName']
+            CommonNames.append(GenBankCommonName)
+
+        except KeyError:
+            i += 1
+            CommonNames.append('N/A')
+            pass
+        except IndexError:
+            try:
+                GenBankCommonName = taxonomy[0]['OtherNames']['GenbankCommonName']
+                CommonNames.append(GenBankCommonName)
+            except KeyError:
+                i += 1
+                CommonNames.append('N/A')
+                pass
+            pass
+
+
+    print('Taxonomy Collected for the file path: %s' % fileHandle)
+    print('Total Number of sequences collected: %s' % str(len(proteinID)))
+    print('Total Number of N/A Sequences: %s, Error Percentage: %s' % (str(i), str(percent_error)))
+
+    connect = sqlite3.connect('Records.db')
+
+    C = connect.cursor()
+
+    for i in range(len(CommonNames)):
+
+        try:
+            C.execute('''INSERT INTO HSP70s VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)''',
+                      (col_0[i],
+                        col_1[i],
+                       col_2[i],
+                       col_3[i],
+                       proteinID[i],
+                       col_5[i],
+                       col_6[i],
+                       col_7[i],
+                       col_8[i],
+                       col_9[i],
+                       col_10[i],
+                       col_11[i],
+                       col_12[i],
+                       col_13[i],
+                       col_14[i],
+                       col_15[i],
+                       col_16[i],
+                       CommonNames[i]))
+        except sqlite3.IntegrityError:
+            print('here')
+            pass
+
+    connect.commit()
+    connect.close()
+
+
+def collectNewGC(fileHandle, db_file='Records.db'):
+
+    Entrez.email = 'bdighera@csu.fullerton.edu'
+
+    V = RecordRetrival()
+
+    V.retrieveFileRecords(fileHandle)
+
+    records = V.pullDBrecords(dbfile=db_file)
+
+    col_0 = [record[0][0] for record in records]
+    col_1 = [record[0][1] for record in records]
+    col_2 = [record[0][2] for record in records]
+    col_3 = [record[0][3] for record in records]
+    col_4 = [record[0][4] for record in records]
+    col_5 = [record[0][5] for record in records]
+    col_6 = [record[0][6] for record in records]
+    col_7 = [record[0][7] for record in records]
+    col_8 = [record[0][8] for record in records]
+    col_9 = [record[0][9] for record in records]
+    col_10 = [record[0][10] for record in records]
+    col_11 = [record[0][11] for record in records]
+    col_12 = [record[0][12] for record in records]
+    col_13 = [record[0][13] for record in records]
+    col_14 = [record[0][14] for record in records]
+    col_15 = [record[0][15] for record in records]
+    col_16 = [record[0][16] for record in records]
+    col_17 = [record[0][17] for record in records]
+
+    j = 0
+
+    for i in range(len(col_4)):
+
+        proteinID = col_4[i]
+
+        SQL = SQLiteChecker(col_1[i])
+
+        if SQL.checkRecords() != True:
+            try:
+                elinkResult = Entrez.read(Entrez.elink(db='gene', dbfrom='protein', id=proteinID, api_key='42c8b18ba1ceca33301e1fa5e582eed81509'))
+                geneID = elinkResult[0]['LinkSetDb'][0]['Link'][0]['Id']
+
+                generalEfetch= Entrez.read(Entrez.efetch(db='gene', id=geneID, rettype='fasta', retmode='xml', api_key='42c8b18ba1ceca33301e1fa5e582eed81509'), validate=False)
+
+                accession = generalEfetch[0]['Entrezgene_locus'][0]['Gene-commentary_accession'] + '.' + generalEfetch[0]['Entrezgene_locus'][0]['Gene-commentary_version']
+                startseq = generalEfetch[0]['Entrezgene_locus'][0]['Gene-commentary_seqs'][0]['Seq-loc_int']['Seq-interval']['Seq-interval_from']
+                endseq = generalEfetch[0]['Entrezgene_locus'][0]['Gene-commentary_seqs'][0]['Seq-loc_int']['Seq-interval']['Seq-interval_to']
+
+                genomeEfetch = SeqIO.read(Entrez.efetch(db='nuccore', id=accession, seq_start=int(startseq), seq_stop=int(endseq), rettype='fasta', api_key='42c8b18ba1ceca33301e1fa5e582eed81509'),'fasta')
+
+                GC = GenomicContext(genomeEfetch)
+
+                # Collects record for  +/- 50k basepairs up/downstream of parent gene
+                gcRecord = GC.fetchRecord()
+
+                # parses raw genomic context data collected from NCBI
+                parsedGCrecord = GC.parseRecord(gcRecord)
+                print('Finshed with Record #: %s' % str(i))
+                j += 1
+
+                sleep(5)
+
+                connect = sqlite3.connect('Records.db')
+
+                C = connect.cursor()
+
+                try:
+                    C.execute('''INSERT INTO HSP70s VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)''',
+                              (col_0[i],
+                               col_1[i],
+                               col_2[i],
+                               col_3[i],
+                               col_4[i],
+                               col_5[i],
+                               col_6[i],
+                               col_7[i],
+                               col_8[i],
+                               col_9[i],
+                               col_10[i],
+                               col_11[i],
+                               str(parsedGCrecord),
+                               col_13[i],
+                               col_14[i],
+                               col_15[i],
+                               col_16[i],
+                               col_17[i]))
+                except sqlite3.IntegrityError:
+                    print('here')
+                    pass
+
+                connect.commit()
+                connect.close()
+
+            except IndexError:
+                print('Record ' + col_1[i] + ' is indexing wrong!')
+                pass
+
+        else:
+            print('Record ' + col_1[i] + ' is already in database. Proceeding to next record')
+
+if __name__ == '__main__':
+
+    file = os.path.join('Seqs', 'allHSP70s.txt')
+    #collectTaxonomy(fileHandle=file)
+    collectNewGC(fileHandle=file)

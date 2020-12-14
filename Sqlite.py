@@ -11,7 +11,7 @@ Remember to update that in the other two classes as well
 #Takes all of the records from the various collection procedures and formats them, and inputs them into the database
 class SQliteRecordInput():
 
-    def __init__(self, Protein, ProteinID, CDS, Genomic, GeneID, GC, Domains, IntronPhase, ExonLength, Taxonomy):
+    def __init__(self, Protein, ProteinID, CDS, Genomic, GeneID, GC, Domains, IntronPhase, ExonLength, Taxonomy, CommonName):
         self.conn = sqlite3.connect('Records.db')
         self.ProteinRecord = Protein
         self.ProteinSeq = str(Protein.seq)
@@ -33,6 +33,7 @@ class SQliteRecordInput():
         self.ExonLength = str(ExonLength)
         self.uuid = str(uuid4())
         self.taxonomy = str(Taxonomy)
+        self.CommonName = CommonName
 
     def uploadRecords(self):
 
@@ -43,7 +44,7 @@ class SQliteRecordInput():
         #                         GenomicSeq TEXT, GenomicDescription TEXT, GeneID INTEGER, GenomicContext TEXT, Introns TEXT, ExonLength TEXT)''')
 
         try:
-            C.execute('''INSERT INTO HSP70 VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)''',(self.uuid, self.ProteinAccession, self.ProteinSeq, self.ProteinDescription, self.ProteinID,
+            C.execute('''INSERT INTO HSP70s VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)''',(self.uuid, self.ProteinAccession, self.ProteinSeq, self.ProteinDescription, self.ProteinID,
                                                                                   self.CDSAccession, self.CDSSeq, self.CDSDescription, self.GenomicAccession,
                                                                                   self.GenomicSeq, self.GenomicDescription,
                                                                                   self.GeneID,
@@ -51,7 +52,8 @@ class SQliteRecordInput():
                                                                                     self.Domains,
                                                                                   self.Introns,
                                                                                   self.ExonLength,
-                                                                                    self.taxonomy))
+                                                                                    self.taxonomy,
+                                                                                          self.CommonName))
         except sqlite3.IntegrityError:
             pass
         self.conn.commit()
@@ -67,7 +69,7 @@ class SQLiteChecker():
     def checkRecords(self):
         C = self.connect.cursor()
 
-        C.execute('SELECT ProteinAccession FROM HSP70 WHERE ProteinAccession= (?)''',(self.proteinAccession,))
+        C.execute('SELECT ProteinAccession FROM HSP70s WHERE ProteinAccession= (?)''',(self.proteinAccession,))
 
         data = C.fetchall()
 
@@ -86,13 +88,12 @@ class makeNewTable():
         '''
         Insert the desired table name where it says insert table name
         '''
-        C.execute('''CREATE TABLE INSERTTABLENAME (UUID TEXT PRIMARY KEY ,ProteinAccession TEXT UNIQUE, ProteinSequence TEXT, ProteinDescription TEXT,
+        C.execute('''CREATE TABLE InsertTableNameHere (UUID TEXT PRIMARY KEY ,ProteinAccession TEXT UNIQUE, ProteinSequence TEXT, ProteinDescription TEXT,
                                   ProteinID INTEGER, CDSAccession TEXT, CDSSeq TEXT, CDSDescription TEXT, GenomicAccession TEXT,
                                 GenomicSeq TEXT, GenomicDescription TEXT, GeneID INTEGER, GenomicContext TEXT, ParentDomains TEXT,
-                                Introns TEXT, ExonLength TEXT, Taxonomy TEXT)''')
+                                Introns TEXT, ExonLength TEXT, Taxonomy TEXT, CommonName TEXT)''')
 
         self.connect.commit()
-
 
 if __name__ == '__main__':
 
